@@ -1,5 +1,7 @@
 DIR=`dirname $0`
 
+cd $DIR/../openmaptiles/
+
 echo kill & down containers 
 docker kill $(docker ps -aq)
 docker-compose down
