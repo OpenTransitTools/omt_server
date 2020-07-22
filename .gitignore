@@ -1,3 +1,4 @@
+web/gl*/*
 ott.leaflet.*
 ott.openlayers.*
 otp_report.html
