@@ -20,23 +20,22 @@
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css" rel='stylesheet' />
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js"></script>
     <script src="leaflet-mapbox-gl.js"></script>
+    <script src="config.json"></script>  
 </head>
 
 <body>
-<div id="map"></div>
-<script>
-var map = L.map('map').setView([45.55, -122.67], 14);
+  <div id="map"></div>
+  <script>
+  var map = L.map('map').setView([MAP_CONFIG.lat, MAP_CONFIG.lon], MAP_CONFIG.zoom);
+  L.marker([MAP_CONFIG.lat, MAP_CONFIG.lon])
+      .bindPopup(MAP_CONFIG.msg)
+      .addTo(map)
+      .openPopup();
 
-L.marker([45.55, -122.67])
-    .bindPopup("Hello <b>Leaflet GL</b>!<br>Whoa, it works!")
-    .addTo(map)
-    .openPopup();
-
-var gl = L.mapboxGL({
-    accessToken: 'no-token',
-    style: 'http://localhost:8070/gl-styles/3d/style.json'
-}).addTo(map);
-
-</script>
+  var gl = L.mapboxGL({
+      accessToken: 'no-token',
+      style: MAP_CONFIG.svr + MAP_CONFIG.style
+  }).addTo(map);
+  </script>
 </body>
 </html>

@@ -2,9 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Simple 3D Map</title>
+  <title>Simple MBox GL Map</title>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
   <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js"></script>
+  <script src="config.json"></script>  
   <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet" />
   <style>
     body { margin: 0; padding: 0; }
@@ -17,13 +18,15 @@
   mapboxgl.accessToken = 'tokens...we dont need no stinkin tokens';
   var map = new mapboxgl.Map({
     container: 'map',
-    style: 'http://localhost:8070/gl-styles/3d/style.json',
-    center: [-122.67, 45.55],
-    zoom: 8
+    style: MAP_CONFIG.svr + MAP_CONFIG.style,
+    center: [MAP_CONFIG.lon, MAP_CONFIG.lat],
+    zoom: MAP_CONFIG.zoom
   });
 
+  var popup = new mapboxgl.Popup({ offset: 25 }).setText(MAP_CONFIG.msg);
   var marker = new mapboxgl.Marker()
-    .setLngLat([-122.67, 45.55])
+    .setLngLat([MAP_CONFIG.lon, MAP_CONFIG.lat])
+    .setPopup(popup)
     .addTo(map);
   </script>
 </body>

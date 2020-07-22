@@ -1,0 +1,8 @@
+MAP_CONFIG = {
+  lat: 45.55,
+  lon: -122.67,
+  zoom: 13,
+  svr: 'http://localhost:8070',
+  style: '/gl-styles/3d/style.json',
+  msg: "This be a point...that's my point"
+}
