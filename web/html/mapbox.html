@@ -22,6 +22,7 @@
     center: [MAP_CONFIG.lon, MAP_CONFIG.lat],
     zoom: MAP_CONFIG.zoom
   });
+  map.addControl(new mapboxgl.NavigationControl());
 
   var popup = new mapboxgl.Popup({ offset: 25 }).setText(MAP_CONFIG.msg);
   var marker = new mapboxgl.Marker()
