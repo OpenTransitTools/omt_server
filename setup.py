@@ -42,6 +42,6 @@ setup(
     test_suite="ott.omt_server.tests",
     entry_points="""
         [console_scripts]
-        download_data = ott.omt_server.converter:download_data
+        ready_style = ott.omt_server.converter:copy_style_dir
     """,
 )
