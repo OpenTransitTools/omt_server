@@ -1021,7 +1021,7 @@
         "symbol-spacing": 200,
         "text-field": "{name:latin} {name:nonlatin}",
         "text-font": [
-          "Noto Sans Bold Italic"
+          "Noto Sans Italic"
         ],
         "text-max-width": 9,
         "text-rotation-alignment": "map",
@@ -1290,13 +1290,13 @@
             [
               12,
               [
-                "Nunito Regular"
+                "Nunito Semi Bold"
               ]
             ],
             [
               16,
               [
-                "Nunito Semi Bold"
+                "Nunito Extra Bold"
               ]
             ]
           ]
@@ -1350,13 +1350,13 @@
             [
               4,
               [
-                "Nunito Regular"
+                "Nunito Semi Bold"
               ]
             ],
             [
               7,
               [
-                "Nunito Bold"
+                "Nunito Extra Bold"
               ]
             ]
           ]
@@ -1423,13 +1423,13 @@
             [
               8,
               [
-                "Nunito Regular"
+                "Nunito Semi Bold"
               ]
             ],
             [
               14,
               [
-                "Nunito Bold"
+                "Nunito Extra Bold"
               ]
             ]
           ]
@@ -1511,13 +1511,13 @@
             [
               3,
               [
-                "Nunito Regular"
+                "Nunito Semi Bold"
               ]
             ],
             [
               4,
               [
-                "Nunito Bold"
+                "Nunito Extra Bold"
               ]
             ]
           ]
