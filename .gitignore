@@ -1,4 +1,5 @@
 *.mbtiles
+*.pbf
 web/gl*/*
 ott.leaflet.*
 ott.openlayers.*
