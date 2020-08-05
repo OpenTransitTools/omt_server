@@ -15,7 +15,8 @@
     "mapbox:type": "template",
     "openmaptiles:mapbox:owner": "openmaptiles",
     "openmaptiles:mapbox:source:url": "mapbox://openmaptiles.4qljc88t",
-    "openmaptiles:version": "3.x"
+    "openmaptiles:version": "3.x",
+    "maputnik:renderer": "mbgljs"
   },
   "center": [0, 0],
   "zoom": 1,
@@ -24,11 +25,11 @@
   "sources": {
     "openmaptiles": {
       "type": "vector",
-      "url": "mbtiles://or-wa.mbtiles"
+      "url": "http://localhost:8080/data/or-wa.json"
     }
   },
-  "glyphs": "{fontstack}/{range}.pbf",
   "sprite": "https://openmaptiles.github.io/osm-bright-gl-style/sprite",
+  "glyphs": "http://localhost:8080/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "background",
@@ -1764,6 +1765,7 @@
         ["==", "$type", "Point"],
         ["<=", "rank", 14],
         ["has", "name"],
+        ["!in", "class", "railway", "bus"],
         ["any", ["!has", "level"], ["==", "level", 0]]
       ],
       "layout": {

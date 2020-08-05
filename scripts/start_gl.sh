@@ -18,3 +18,10 @@ if [ ! -f ./data/or-wa.mbtiles ]; then
 fi
 
 docker run --rm -it -v $(pwd):/data -p 8080:80 maptiler/tileserver-gl
+
+# start maputnik editor 
+if [[ $1 == *'MAP'* || $1 == *'ED'* ]]; then
+  echo "Starting Maputnik..."
+  docker run --rm -u $(id -u):$(id -g) --name maputnik_editor -d -p 8088:8888 maputnik/editor
+fi
+

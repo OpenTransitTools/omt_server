@@ -13,3 +13,7 @@ install:
 run:
   1. bin/test
   1. ...
+
+edit styles:
+  1. mapnik
+  1. Might have to understand underlying data: https://openmaptiles.org/schema/#poi
