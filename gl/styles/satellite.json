@@ -1,0 +1,3 @@
+GL style which brings in sub layer of satellite imagery from GeoServer / Tilecache
+Could be either via WMS or xyz tiles
+See https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/
