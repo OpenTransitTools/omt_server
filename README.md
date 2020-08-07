@@ -17,3 +17,8 @@ run:
 edit styles:
   1. mapnik
   1. Might have to understand underlying data: https://openmaptiles.org/schema/#poi
+  1. Finally, the editor might muck with the data and font URLs.  So good to have an script to fix that...
+     "glyphs": "http://localhost:8080/fonts/{fontstack}/{range}.pbf",
+     "glyphs": "{fontstack}/{range}.pbf",
+     "url": "http://localhost:8080/data/or-wa.json"
+     "url": "mbtiles://or-wa.mbtiles"
