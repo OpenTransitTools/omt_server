@@ -1,7 +1,7 @@
 {
   "version": 8,
-  "name": "TriMet Satellite - xyz",
-  "id": "satellite",
+  "name": "TriMet Satellite - WMS layer",
+  "id": "wms",
   "metadata": {
     "mapbox:autocomposite": false,
     "maputnik:renderer": "mbgljs",
@@ -12,10 +12,10 @@
       "type": "vector",
       "url": "mbtiles://or-wa.mbtiles"
     },
-    "xyz-imagery": {
+    "wms-imagery": {
       "type": "raster",
       "tiles": [
-        "https://tile.trimet.org/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}.jpg"
+        "https://maps.trimet.org/wms?bbox={bbox-epsg-3857}&format=image/jpeg&service=WMS&version=1.1.0&request=GetMap&srs=EPSG:3857&width=256&height=256&layers=aerials"
       ],
       "tileSize": 256
     }
@@ -30,7 +30,7 @@
     {
       "id": "aerials",
       "type": "raster",
-      "source": "xyz-imagery"
+      "source": "wms-imagery"
     },
     {
       "id": "tunnel_railway_transit",
