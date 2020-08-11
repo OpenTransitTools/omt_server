@@ -23,6 +23,11 @@
   "glyphs": "{fontstack}/{range}.pbf",
   "layers": [
     {
+      "id": "aerials",
+      "type": "raster",
+      "source": "wms-imagery"
+    },
+    {
       "id": "tunnel_railway_transit",
       "type": "line",
       "source": "openmaptiles",
