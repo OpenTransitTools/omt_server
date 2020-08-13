@@ -12,10 +12,17 @@
       "type": "vector",
       "url": "mbtiles://or-wa.mbtiles"
     },
-    "wms-imagery": {
+    "tm-imagery": {
       "type": "raster",
       "tiles": [
-        "https://maps.trimet.org/wms?bbox={bbox-epsg-3857}&format=image/jpeg&service=WMS&version=1.1.0&request=GetMap&srs=EPSG:3857&width=256&height=256&layers=aerials"
+        "https://maps.trimet.org/wms?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.0&request=GetMap&srs=EPSG:3857&width=256&height=256&layers=aerials"
+      ],
+      "tileSize": 256
+    },
+    "or-imagery": {
+      "type": "raster",
+      "tiles": [
+        "https://imagery.oregonexplorer.info/arcgis/services/OSIP_2018/OSIP_2018_WM/ImageServer/WMSServer?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.0&request=GetMap&srs=EPSG:3857&width=256&height=256&layers=0"
       ],
       "tileSize": 256
     }
@@ -28,9 +35,9 @@
       "color": "#000000"
     },
     {
-      "id": "aerials",
+      "id": "or-aerials",
       "type": "raster",
-      "source": "wms-imagery"
+      "source": "or-imagery"
     },
     {
       "id": "tunnel_railway_transit",

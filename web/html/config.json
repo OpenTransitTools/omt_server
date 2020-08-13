@@ -2,7 +2,11 @@ MAP_CONFIG = {
   lat: 45.55,
   lon: -122.67,
   zoom: 13,
-  svr: 'http://localhost:8070',
-  style: '/gl-styles/3d/style.json',
+  svr: 'http://localhost:8080',
+  data: '/data/or-wa.json',
+  style: '/styles/3d/style.json',
+  styles: [
+    '/styles/3d/style.json'
+  ],
   msg: "This be a point...that's my point"
 }
