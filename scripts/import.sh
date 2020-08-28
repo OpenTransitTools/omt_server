@@ -19,7 +19,7 @@ else
     echo not loading ... move an OSM .pbf file into $PWD/data/
   fi
 fi
-exit
+
 
 # steps to import data
 make refresh-docker-images
