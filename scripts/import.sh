@@ -1,11 +1,11 @@
 # prep the openmaptiles (remote repo) directory
 DIR=`dirname $0`
 $DIR/git_update.sh
-$DIR/env_update.sh
 
 # make the output directory
 cd $DIR/../openmaptiles/
 mkdir ./data/
+rm ./data/*yml
 
 # check data directory (maybe use in omt_server/../*pbf) for a .pbf file to import
 if [ -f data/*.pbf ]; then
@@ -36,4 +36,5 @@ make import-sql
 make analyze-db
 make test-perf-null
 make generate-dc-config
+../scripts/yml_updates.sh
 make generate-tiles
