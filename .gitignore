@@ -1,4 +1,7 @@
-*.mbtiles
+**/core.*
+**/*.txt
+**/*backup
+**/*.mbtiles
 *.pbf
 web/gl*/*
 ott.leaflet.*
