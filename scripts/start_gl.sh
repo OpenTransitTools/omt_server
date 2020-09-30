@@ -2,6 +2,9 @@
 # To run:
 # tmux new-session -d -s my_session 'run.sh >> out.txt 2>&1'
 #
+# -extra logging-
+# grab continaer id via docker ps -a and then run docker logs <container_id>
+#
 
 
 # try to get into the gl dir
