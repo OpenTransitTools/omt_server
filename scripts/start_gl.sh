@@ -1,3 +1,9 @@
+#
+# To run:
+# tmux new-session -d -s my_session 'run.sh >> out.txt 2>&1'
+#
+
+
 # try to get into the gl dir
 DIR=`dirname $0`
 if [ $DIR == 'scripts' ]; then
@@ -22,7 +28,7 @@ fi
 # See options for some more details: https://tileserver.readthedocs.io/en/latest/usage.html#default-preview-style-and-configuration
 # There may be useful things to do with the --mbtiles and --config flags
 # This can be adapted to docker-compose, but we can work on that later.
-docker run --rm -it -v $(pwd):/data -p 8080:80 maptiler/tileserver-gl --verbose
+docker run --rm -it -v $(pwd):/data -p 8080:80 -e "NODE_ENV=dev" maptiler/tileserver-gl --verbose
 
 # start maputnik editor 
 if [[ $1 == *'MAP'* || $1 == *'ED'* ]]; then
