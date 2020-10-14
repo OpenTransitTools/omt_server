@@ -9,8 +9,11 @@ The omt_server project is:
   1. finally, there scripts to manage (nuke) docker, etc...
 
 build tile *.mbtiles file from OSM:
-  1. cd ~/
-  1. 
+  1. cd ~/omt_server/
+  1. scripts/git_update.sh
+  1. cp <your_OSM_data>.osm.pbf openmaptiles/data/
+  1. scripts/import.sh
+  1. openmaptiles/data/*.mbtiles file is generated(as well as some meta data files)
 
 run tile server:
   1. cd ~/omt_server/gl
