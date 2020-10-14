@@ -14,6 +14,8 @@ build tile *.mbtiles file from OSM:
   1. cp <your_OSM_data>.osm.pbf openmaptiles/data/
   1. scripts/import.sh
   1. openmaptiles/data/*.mbtiles file is generated(as well as some meta data files)
+  NOTE: import.sh is configured to generate 16 layers of data, which takes ~2 hours for a sub-state region (NW Oregon, SW Washington)
+        larger regions should probably ramp down the layers parameter. See scripts/yml_updates.sh
 
 run tile server:
   1. cd ~/omt_server/gl
