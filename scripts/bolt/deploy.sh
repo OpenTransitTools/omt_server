@@ -1,4 +1,5 @@
 function deploy_mbtiles() {
+  ret_val=0
   # step 1: validate *.mbtiles ... proper size, etc...
   # if []; then
   # fi
@@ -10,6 +11,7 @@ function deploy_mbtiles() {
   # maybe tileserver-gl can have different font (or other static) files to identify BLUE / GREEN server
 
   # step 4: bolt_clear.sh   - that tileserver-gl is up and responding on remote servers, then clear file (tile) cache
+  return ret_val
 }
 
 
