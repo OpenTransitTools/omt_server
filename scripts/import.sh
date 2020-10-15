@@ -22,11 +22,14 @@ fi
 
 
 # steps to import data
+echo "step 1 of 3: clean"
 make refresh-docker-images
 make destroy-db
 make init-dirs
 make clean
 make all
+
+echo "step 2 of 3: import boarders, wiki and OSM into PG (silently takes time...)"
 make start-db
 make import-data
 make import-osm
@@ -35,6 +38,8 @@ make import-wikidata
 make import-sql
 make analyze-db
 make test-perf-null
+
+echo "step 3 of 3: generate .mbtiles file"
 make generate-dc-config
 ../scripts/yml_updates.sh
 make generate-tiles

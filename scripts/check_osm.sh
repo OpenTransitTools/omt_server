@@ -50,7 +50,6 @@ function update_osm_data() {
 }
 
 
-
 function check_osm_meta_data() {
   # returns true if the old and new gtfs files don't match
   ret_val=0
@@ -86,5 +85,5 @@ new=$?
 if [ $new == 1 ]; then
   update_osm_data
   `$DIR/import.sh`
-  `$DIR/deploy.sh`
+  `$DIR/bolt/deploy.sh`
 fi
