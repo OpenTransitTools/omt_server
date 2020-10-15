@@ -13,5 +13,5 @@ function deploy_mbtiles() {
 }
 
 
-echo DEPLOY 
-echo TODO
+echo "DEPLOY"
+echo "TODO"

@@ -85,5 +85,7 @@ new=$?
 if [ $new == 1 ]; then
   update_osm_data
   `$DIR/import.sh`
+  rm -f $DIR/gl/*
+  `$DIR/start_gl_nohup.sh`
   `$DIR/bolt/deploy.sh`
 fi
