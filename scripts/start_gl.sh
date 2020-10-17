@@ -26,12 +26,16 @@ if [ ! -f ./data/or-wa.mbtiles ]; then
   cp ../openmaptiles/data/*yml ./data/
 fi
 
+#
 # public_url does not work as expected.  It appears to just allow you to have an alternate path to override static resources.
 #  - https://github.com/maptiler/tileserver-gl/issues/477
 # See options for some more details: https://tileserver.readthedocs.io/en/latest/usage.html#default-preview-style-and-configuration
 # There may be useful things to do with the --mbtiles and --config flags
 # This can be adapted to docker-compose, but we can work on that later.
-docker run --rm -it -v $(pwd):/data -p 8080:80 -e "NODE_ENV=dev" maptiler/tileserver-gl --verbose
+#
+# NOTE: Frank replaced the --rm param with --restart=always to keep this puppy running
+#
+docker run --restart=always -it -v $(pwd):/data -p 8080:80 -e "NODE_ENV=dev" maptiler/tileserver-gl --verbose
 
 # start maputnik editor 
 if [[ $1 == *'MAP'* || $1 == *'ED'* ]]; then
