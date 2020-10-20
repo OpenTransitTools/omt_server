@@ -32,6 +32,15 @@ edit styles:
      "url": "http://localhost:8080/data/or-wa.json"
      "url": "mbtiles://or-wa.mbtiles"
 
+
+*ws endpoints*
+  - https://tileserver.readthedocs.io/en/latest/endpoints.html
+  - static images:
+    1. /styles/{id}/static/{lon},{lat},{zoom}[@{bearing}[,{pitch}]]/{width}x{height}[@2x].{format}
+    1. https://tiles-dv.trimet.org/styles/bright/static/-122.67567,45.42061,18/300x288.png
+    1. https://tiles-dv.trimet.org/styles/bright/static/-122.67567,45.42061,17@0,70/550x388.png 
+  
+
 install python scripts (not currently used):
   1. install python 3.7 (works with py versions >= 2.7), zc.buildout and git
   1. git clone https://github.com/OpenTransitTools/omt_server.git

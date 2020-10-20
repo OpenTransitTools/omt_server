@@ -1,6 +1,5 @@
 {
   "options": {
-    "frontPage": true,
     "paths": {
       "root": "",
       "fonts": "fonts",
@@ -12,7 +11,10 @@
       "png": 6,
       "jpeg": 80,
       "webp": 90
-    }
+    },
+    "maxScaleFactor": 3,
+    "tileMargin": 20,
+    "frontPage": true
   },
   "data": {
     "or-wa": {
