@@ -1,5 +1,6 @@
 {
   "options": {
+    "frontPage": true,
     "paths": {
       "root": "",
       "fonts": "fonts",
