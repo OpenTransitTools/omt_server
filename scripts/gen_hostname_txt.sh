@@ -22,4 +22,4 @@ CFG_FILE=$GL_DIR/config.json
 echo $HOSTNAME > $SVR_FILE
 
 # step 2: change GL's config.json to point to new server file
-sed -i -- 's/"frontPage": true/"frontPage": "$SVR_NAME"/g' $CFG_FILE
+sed -i -- "s/\"frontPage\": true/\"frontPage\": \"$SVR_NAME\"/g" $CFG_FILE
