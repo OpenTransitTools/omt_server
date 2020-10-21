@@ -1,14 +1,15 @@
 omt_server
 ==========
 
-The omt_server project is:
+### The omt_server project is:
   1. a build / run environment atop OpenMapTiles https://github.com/openmaptiles/openmaptiles
   1. it includes scripts to build tiles (mbtile file) from OSM data
   1. it also includes scripts to run a GL server based off a built .mbtiles file
   1. there are also a set of gl styles that GL can consume
   1. finally, there scripts to manage (nuke) docker, etc...
 
-build tile *.mbtiles file from OSM:
+
+### **_build_** tile *.mbtiles file from OSM:
   1. cd ~/omt_server/
   1. scripts/git_update.sh
   1. cp <your_OSM_data>.osm.pbf openmaptiles/data/
@@ -17,13 +18,15 @@ build tile *.mbtiles file from OSM:
   NOTE: import.sh is configured to generate 16 layers of data, which takes ~2 hours for a sub-state region (NW Oregon, SW Washington)
         larger regions should probably ramp down the layers parameter. See scripts/yml_updates.sh
 
-run tile server:
+
+###  **_run_** tile server:
   1. cd ~/omt_server/gl
   1. ls ./data -> borders or-wa.dc-config.yml  or-wa.mbtiles
   1. tmux new-session -d -s my_session 'run.sh >> out.txt 2>&1'
   1. http://localhost:8080
 
-edit styles:
+
+### **_edit_** styles:
   1. mapnik
   1. Might have to understand underlying data: https://openmaptiles.org/schema/#poi
   1. Finally, the editor might muck with the data and font URLs.  So good to have an script to fix that...
@@ -32,8 +35,12 @@ edit styles:
      "url": "http://localhost:8080/data/or-wa.json"
      "url": "mbtiles://or-wa.mbtiles"
 
+### **_add_** fonts:
+  1. download the font file (e.g., https://fonts.google.com/specimen/Source+Sans+Pro#standard-styles)
+  1.  
 
-*ws endpoints*
+
+### ws endpoints
   - https://tileserver.readthedocs.io/en/latest/endpoints.html
   - static images:
     1. /styles/{id}/static/{lon},{lat},{zoom}[@{bearing}[,{pitch}]]/{width}x{height}[@2x].{format}

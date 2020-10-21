@@ -13,7 +13,7 @@
       "webp": 90
     },
     "maxScaleFactor": 3,
-    "tileMargin": 20,
+    "tileMargin": 10,
     "frontPage": true
   },
   "data": {
@@ -22,6 +22,20 @@
     }
   },
   "styles": {
+    "trimet": {
+      "style": "trimet.json",
+      "tilejson": {
+        "type": "overlay",
+        "bounds": [-123.7999989, 44.6800008, -121.500002, 45.9599992]
+      }
+    },
+    "trimet-satellite": {
+      "style": "trimet-satellite.json",
+      "tilejson": {
+        "type": "overlay",
+        "bounds": [-123.7999989, 44.6800008, -121.500002, 45.9599992]
+      }
+    },
     "basic": {
       "style": "basic.json",
       "tilejson": {
@@ -64,15 +78,15 @@
         "bounds": [-123.7999989, 44.6800008, -121.500002, 45.9599992]
       }
     },
-    "satellite": {
-      "style": "satellite.json",
+    "wms": {
+      "style": "wms.json",
       "tilejson": {
         "type": "overlay",
         "bounds": [-123.7999989, 44.6800008, -121.500002, 45.9599992]
       }
     },
-    "wms": {
-      "style": "wms.json",
+    "xyz": {
+      "style": "xyz.json",
       "tilejson": {
         "type": "overlay",
         "bounds": [-123.7999989, 44.6800008, -121.500002, 45.9599992]

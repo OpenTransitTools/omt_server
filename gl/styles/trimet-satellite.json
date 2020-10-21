@@ -1,7 +1,7 @@
 {
   "version": 8,
-  "name": "TriMet Satellite - xyz",
-  "id": "satellite",
+  "name": "TriMet Satellite",
+  "id": "tm-satellite",
   "metadata": {
     "mapbox:autocomposite": false,
     "maputnik:renderer": "mbgljs",
@@ -12,10 +12,17 @@
       "type": "vector",
       "url": "mbtiles://or-wa.mbtiles"
     },
-    "xyz-imagery": {
+    "tm-imagery": {
       "type": "raster",
       "tiles": [
-        "https://tile.trimet.org/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}.jpg"
+        "https://maps.trimet.org/wms?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.0&request=GetMap&srs=EPSG:3857&width=256&height=256&layers=aerials"
+      ],
+      "tileSize": 256
+    },
+    "or-imagery": {
+      "type": "raster",
+      "tiles": [
+        "https://imagery.oregonexplorer.info/arcgis/services/OSIP_2018/OSIP_2018_WM/ImageServer/WMSServer?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.0&request=GetMap&srs=EPSG:3857&width=256&height=256&layers=0"
       ],
       "tileSize": 256
     }
@@ -28,9 +35,9 @@
       "color": "#000000"
     },
     {
-      "id": "aerials",
+      "id": "or-aerials",
       "type": "raster",
-      "source": "xyz-imagery"
+      "source": "or-imagery"
     },
     {
       "id": "tunnel_railway_transit",

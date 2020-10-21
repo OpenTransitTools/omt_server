@@ -1,7 +1,7 @@
 {
   "version": 8,
-  "name": "TriMet 3D",
-  "id": "3d",
+  "name": "XYZ Satellite layer (TriMet hybrid xyz tiles)",
+  "id": "xyz",
   "metadata": {
     "mapbox:autocomposite": false,
     "maputnik:renderer": "mbgljs",
@@ -11,6 +11,13 @@
     "openmaptiles": {
       "type": "vector",
       "url": "mbtiles://or-wa.mbtiles"
+    },
+    "xyz-imagery": {
+      "type": "raster",
+      "tiles": [
+        "https://tile.trimet.org/tilecache/tilecache.py/1.0.0/hybridOSM/{z}/{x}/{y}.jpg"
+      ],
+      "tileSize": 256
     }
   },
   "glyphs": "{fontstack}/{range}.pbf",
@@ -18,166 +25,12 @@
     {
       "id": "background",
       "type": "background",
-      "paint": {"background-color": "hsl(47, 26%, 88%)"}
+      "color": "#000000"
     },
     {
-      "id": "landuse-residential",
-      "type": "fill",
-      "source": "openmaptiles",
-      "source-layer": "landuse",
-      "filter": [
-        "all",
-        ["==", "$type", "Polygon"],
-        ["==", "class", "residential"]
-      ],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "hsl(47, 13%, 86%)", "fill-opacity": 0.7}
-    },
-    {
-      "id": "landcover_grass",
-      "type": "fill",
-      "source": "openmaptiles",
-      "source-layer": "landcover",
-      "filter": ["==", "class", "grass"],
-      "paint": {"fill-color": "hsl(82, 46%, 72%)", "fill-opacity": 0.45}
-    },
-    {
-      "id": "park",
-      "type": "fill",
-      "source": "openmaptiles",
-      "source-layer": "park",
-      "paint": {"fill-color": "rgba(192, 216, 151, 0.53)", "fill-opacity": 1}
-    },
-    {
-      "id": "landcover_wood",
-      "type": "fill",
-      "source": "openmaptiles",
-      "source-layer": "landcover",
-      "filter": ["==", "class", "wood"],
-      "paint": {
-        "fill-color": "hsl(82, 46%, 72%)",
-        "fill-opacity": {"base": 1, "stops": [[8, 0.6], [22, 1]]}
-      }
-    },
-    {
-      "id": "water",
-      "type": "fill",
-      "source": "openmaptiles",
-      "source-layer": "water",
-      "filter": [
-        "all",
-        ["==", "$type", "Polygon"],
-        ["!=", "brunnel", "tunnel"]
-      ],
-      "paint": {"fill-color": "hsl(205, 56%, 73%)"}
-    },
-    {
-      "id": "landcover-ice-shelf",
-      "type": "fill",
-      "source": "openmaptiles",
-      "source-layer": "landcover",
-      "filter": ["==", "subclass", "ice_shelf"],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "hsl(47, 26%, 88%)", "fill-opacity": 0.8}
-    },
-    {
-      "id": "landcover-glacier",
-      "type": "fill",
-      "source": "openmaptiles",
-      "source-layer": "landcover",
-      "filter": ["==", "subclass", "glacier"],
-      "layout": {"visibility": "visible"},
-      "paint": {
-        "fill-color": "hsl(47, 22%, 94%)",
-        "fill-opacity": {"base": 1, "stops": [[0, 1], [8, 0.5]]}
-      }
-    },
-    {
-      "id": "landuse",
-      "type": "fill",
-      "source": "openmaptiles",
-      "source-layer": "landuse",
-      "filter": ["==", "class", "agriculture"],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "#eae0d0"}
-    },
-    {
-      "id": "landuse_overlay_national_park",
-      "type": "fill",
-      "source": "openmaptiles",
-      "source-layer": "landcover",
-      "filter": ["==", "class", "national_park"],
-      "paint": {
-        "fill-color": "#E1EBB0",
-        "fill-opacity": {"base": 1, "stops": [[5, 0], [9, 0.75]]}
-      }
-    },
-    {
-      "id": "park_outline",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "park",
-      "layout": {},
-      "paint": {
-        "line-color": "rgba(159, 183, 118, 0.69)",
-        "line-dasharray": [0.5, 1]
-      }
-    },
-    {
-      "id": "waterway_tunnel",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "waterway",
-      "filter": [
-        "all",
-        ["==", "$type", "LineString"],
-        ["==", "brunnel", "tunnel"]
-      ],
-      "layout": {"visibility": "visible"},
-      "paint": {
-        "line-color": "hsl(205, 56%, 73%)",
-        "line-dasharray": [3, 3],
-        "line-gap-width": {"stops": [[12, 0], [20, 6]]},
-        "line-opacity": 1,
-        "line-width": {"base": 1.4, "stops": [[8, 1], [20, 2]]}
-      }
-    },
-    {
-      "id": "waterway",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "waterway",
-      "filter": [
-        "all",
-        ["==", "$type", "LineString"],
-        ["!=", "intermittent", 1],
-        ["!in", "brunnel", "tunnel", "bridge"]
-      ],
-      "layout": {"visibility": "none"},
-      "paint": {
-        "line-color": "hsl(205, 56%, 73%)",
-        "line-opacity": 1,
-        "line-width": {"base": 1.4, "stops": [[8, 1], [20, 8]]}
-      }
-    },
-    {
-      "id": "waterway_intermittent",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "waterway",
-      "filter": [
-        "all",
-        ["==", "$type", "LineString"],
-        ["==", "intermittent", 1],
-        ["!in", "brunnel", "tunnel", "bridge"]
-      ],
-      "layout": {"visibility": "visible"},
-      "paint": {
-        "line-color": "hsl(205, 56%, 73%)",
-        "line-dasharray": [2, 1],
-        "line-opacity": 1,
-        "line-width": {"base": 1.4, "stops": [[8, 1], [20, 8]]}
-      }
+      "id": "aerials",
+      "type": "raster",
+      "source": "xyz-imagery"
     },
     {
       "id": "tunnel_railway_transit",
@@ -355,22 +208,6 @@
       }
     },
     {
-      "id": "railway_transit",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "transportation",
-      "filter": [
-        "all",
-        ["==", "class", "transit"],
-        ["!=", "brunnel", "tunnel"]
-      ],
-      "layout": {"visibility": "visible"},
-      "paint": {
-        "line-color": "hsl(34, 12%, 66%)",
-        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
-      }
-    },
-    {
       "id": "railway",
       "type": "line",
       "source": "openmaptiles",
@@ -542,7 +379,7 @@
           "property": "render_height",
           "type": "identity"
         },
-        "fill-extrusion-opacity": 0.6
+        "fill-extrusion-opacity": 0.3
       }
     },
     {

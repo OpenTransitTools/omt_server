@@ -1,6 +1,7 @@
 {
   "version": 8,
   "name": "Basic",
+  "id": "basic",
   "metadata": {
     "mapbox:autocomposite": false,
     "mapbox:type": "template",
@@ -808,6 +809,5 @@
         "text-halo-width": 2
       }
     }
-  ],
-  "id": "basic"
+  ]
 }

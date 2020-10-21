@@ -1,6 +1,6 @@
 {
   "version": 8,
-  "name": "TriMet Satellite - WMS layer",
+  "name": "WMS Satellite layer (Oregon 2018)",
   "id": "wms",
   "metadata": {
     "mapbox:autocomposite": false,
@@ -11,13 +11,6 @@
     "openmaptiles": {
       "type": "vector",
       "url": "mbtiles://or-wa.mbtiles"
-    },
-    "tm-imagery": {
-      "type": "raster",
-      "tiles": [
-        "https://maps.trimet.org/wms?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.0&request=GetMap&srs=EPSG:3857&width=256&height=256&layers=aerials"
-      ],
-      "tileSize": 256
     },
     "or-imagery": {
       "type": "raster",
