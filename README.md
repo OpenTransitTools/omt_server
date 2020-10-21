@@ -36,8 +36,15 @@ omt_server
      "url": "mbtiles://or-wa.mbtiles"
 
 ### **_add_** fonts:
-  1. download the font file (e.g., https://fonts.google.com/specimen/Source+Sans+Pro#standard-styles)
-  1.  
+  1. download the font file (e.g., 
+  https://fonts.google.com/specimen/Source+Sans+Pro#standard-styles)
+  1. run the font converter:
+     - git clone https://github.com/openmaptiles/fonts.git
+     - cd ./fonts
+     - cp <your new font dir> .
+     - yarn install
+     - node ./generate.js
+  1. cp ./_output/* ../omt_tiles/gl/fonts/
 
 
 ### ws endpoints
