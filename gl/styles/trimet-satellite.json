@@ -4,8 +4,10 @@
   "id": "tm-satellite",
   "metadata": {
     "mapbox:autocomposite": false,
+    "mapbox:type": "template",
     "maputnik:renderer": "mbgljs",
-    "openmaptiles:version": "3.x"
+    "openmaptiles:version": "3.x",
+    "openmaptiles:mapbox:owner": "openmaptiles"
   },
   "sources": {
     "openmaptiles": {
@@ -434,19 +436,17 @@
       "source-layer": "poi",
       "minzoom": 14,
       "maxzoom": 24,
-      "filter": ["all", ["==", "$type", "Point"], ["==", "rank", 1]],
+      "filter": [
+        "all",
+        ["==", "$type", "Point"],
+        ["==", "rank", 1],
+        ["!in", "class", "bus", "railway"]
+      ],
       "layout": {
         "icon-size": 1,
         "text-anchor": "top",
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": {
-          "property": "",
-          "type": "categorical",
-          "stops": [
-            [{"zoom": 6, "value": ""}, ["Source Sans Pro"]],
-            [{"zoom": 10, "value": ""}, ["Source Sans Pro"]]
-          ]
-        },
+        "text-font": ["Source Sans Pro Light"],
         "text-max-width": 8,
         "text-offset": [0, 0.5],
         "text-size": 11,
@@ -472,7 +472,7 @@
         "icon-size": 1,
         "text-anchor": "top",
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Source Sans Pro Regular"],
         "text-max-width": 8,
         "text-offset": [0, 0.5],
         "text-size": 11,
@@ -495,7 +495,7 @@
       "layout": {
         "symbol-placement": "line",
         "text-field": "{name:latin} {name:nonlatin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Source Sans Pro Regular"],
         "text-letter-spacing": 0.1,
         "text-rotation-alignment": "map",
         "text-size": {"base": 1.4, "stops": [[10, 8], [20, 14]]},
@@ -522,7 +522,7 @@
       "layout": {
         "text-anchor": "center",
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Source Sans Pro Regular"],
         "text-max-width": 6,
         "text-size": {"stops": [[6, 10], [12, 12]]},
         "visibility": "visible"
@@ -543,7 +543,7 @@
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "city"]],
       "layout": {
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Source Sans Pro"],
+        "text-font": ["Source Sans Pro Bold"],
         "text-max-width": 10,
         "text-size": {"stops": [[3, 14], [8, 20]]},
         "text-letter-spacing": 0.1,
@@ -570,7 +570,7 @@
       ],
       "layout": {
         "text-field": "{name:latin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Source Sans Pro Regular"],
         "text-max-width": 10,
         "text-size": {"stops": [[3, 12], [8, 22]]},
         "visibility": "visible"
@@ -596,7 +596,7 @@
       ],
       "layout": {
         "text-field": "{name:latin}",
-        "text-font": ["Noto Sans Bold"],
+        "text-font": ["Source Sans Pro Bold"],
         "text-max-width": 10,
         "text-size": {"stops": [[3, 12], [8, 22]]},
         "visibility": "visible"
