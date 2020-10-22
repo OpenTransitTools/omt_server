@@ -12,8 +12,8 @@
       "jpeg": 80,
       "webp": 90
     },
-    "maxScaleFactor": 3,
-    "tileMargin": 10,
+    "maxScaleFactor": 6,
+    "tileMargin": 12,
     "frontPage": true
   },
   "data": {
