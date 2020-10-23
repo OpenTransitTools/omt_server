@@ -158,15 +158,15 @@
       "type": "fill",
       "source": "openmaptiles",
       "source-layer": "building",
+      "minzoom": 16,
+      "maxzoom": 24,
       "paint": {
         "fill-antialias": true,
         "fill-color": "rgba(238, 238, 238, 1)",
         "fill-opacity": {"base": 1, "stops": [[13, 0], [15, 1]]},
         "fill-outline-color": {
           "stops": [[15, "rgba(0, 0, 0, 0)"], [16, "rgba(0, 0, 0, 0)"]]
-        },
-        "maxzoom": 24,
-        "minzoom": 16
+        }
       }
     },
     {
