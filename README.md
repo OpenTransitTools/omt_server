@@ -35,6 +35,13 @@ omt_server
      "url": "http://localhost:8080/data/or-wa.json"
      "url": "mbtiles://or-wa.mbtiles"
 
+
+### validate style.json
+  1. https://github.com/mapbox/mapbox-gl-js/tree/main/src/style-spec
+  1. npm install @mapbox/mapbox-gl-style-spec --global  # caution global
+  1. gl-style-validate gl/style/trimet.json
+
+
 ### **_add_** fonts:
   1. download the font file (e.g., 
   https://fonts.google.com/specimen/Source+Sans+Pro#standard-styles)
