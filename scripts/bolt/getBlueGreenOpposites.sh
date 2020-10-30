@@ -1,14 +1,14 @@
 DIR=`dirname $0`
 . ${DIR}/servers.sh
 
-HEAD="tiles"
-
 DIR=$(cd `dirname $0` && pwd)
-MACHINE=${1:-"${HEAD}-st.trimet.org"}
+MACHINE=${1:-"tiles-st.trimet.org"}
 DEBUG=${2:-"FALSE"}
 COLOR=`$DIR/isBlueOrGreen.sh $MACHINE $DEBUG`
+HEAD=${MACHINE%%[-.]*}  # eg the 'tiles' from tile-st.trimet.org or tiles.trimet.org
 
 if [[ $DEBUG == "TRUE" ]]; then
+    echo "head:  $HEAD"
     echo "color: $COLOR"
     echo "machine: $MACHINE"
 fi
