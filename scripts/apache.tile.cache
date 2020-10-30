@@ -1,0 +1,47 @@
+
+#
+# For testing...
+# included from /etc/httpd/conf.d/01-tiles.trimet.org.conf
+#
+Header unset Expires
+Header unset Cache-Control
+Header unset Pragma
+Header unset If-Modified-Since
+Header unset If-None-Match
+Header unset ETag
+FileETag None
+
+RequestHeader set X-Forwarded-Proto https
+
+ExpiresActive On
+ExpiresByType image/png "access plus 1 months"
+ExpiresByType image/jpg "access plus 1 months"
+ExpiresByType image/jpeg "access plus 1 months"
+ExpiresByType text/javascript "access plus 1 months"
+ExpiresByType application/javascript "access plus 1 months"
+ExpiresByType application/x-protobuf "access plus 1 months"
+
+CacheHeader on
+CacheIgnoreCacheControl on
+CacheStaleOnError on
+CacheStoreNoStore on
+CacheStorePrivate on
+
+CacheLock on
+CacheLockPath "/tmp/mod_cache-lock"
+CacheLockMaxAge 60
+
+CacheRoot          /srv/web_tiles-trimet-org/var/httpd/disk_cache
+CacheEnable        disk /
+CacheDirLevels     5
+CacheDirLength     1
+CacheMaxFileSize   9000000
+CacheMinFileSize   100
+CacheDefaultExpire 604800
+CacheMaxExpire     2400000
+<LocationMatch "^/$">
+    CacheDisable on
+</LocationMatch>
+
+ProxyPass        "/" "http://cs-st-mapapp01:8080/"
+ProxyPassReverse "/" "http://cs-st-mapapp01:8080/"
