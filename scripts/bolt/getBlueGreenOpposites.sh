@@ -1,10 +1,18 @@
 DIR=`dirname $0`
 . ${DIR}/servers.sh
 
+HEAD="tiles"
+
 DIR=$(cd `dirname $0` && pwd)
-MACHINE=${1:-"tiles-st.trimet.org"}
+MACHINE=${1:-"${HEAD}-st.trimet.org"}
 DEBUG=${2:-"FALSE"}
 COLOR=`$DIR/isBlueOrGreen.sh $MACHINE $DEBUG`
+
+if [[ $DEBUG == "TRUE" ]]; then
+    echo "color: $COLOR"
+    echo "machine: $MACHINE"
+fi
+
 
 ##
 ## the BLUES and GREENS list will have both dev/stage/production servers in the list
@@ -15,11 +23,11 @@ function filter() {
 
     for svr in $1
     do
-        if [[ $MACHINE == "ws."* && $svr == *"-pd-"* ]]; then
+        if [[ $MACHINE == "$HEAD."* && $svr == *"-pd-"* ]]; then
             CLZ+="$svr "
-        elif [[ $MACHINE == "ws-st."* && $svr == *"-st-"* ]]; then
+        elif [[ $MACHINE == "$HEAD-st."* && $svr == *"-st-"* ]]; then
             CLZ+="$svr "
-        elif [[ $MACHINE == "ws-dv."* && $svr == *"-dv-"* ]]; then
+        elif [[ $MACHINE == "$HEAD-dv."* && $svr == *"-dv-"* ]]; then
             CLZ+="$svr "
         fi
     done

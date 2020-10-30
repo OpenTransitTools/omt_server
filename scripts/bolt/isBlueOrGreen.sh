@@ -19,7 +19,7 @@ URL="https://${MACHINE}"
 DOC=`curl -s $URL`;
 hostname=$DOC;
 
-if [[ $DEBUG == "FALSE" ]]; then
+if [[ $DEBUG == "TRUE" ]]; then
     echo "url: $URL"
     echo "doc: $DOC"
     echo "hostname: $hostname"
