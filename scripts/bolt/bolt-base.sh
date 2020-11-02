@@ -5,5 +5,8 @@ then
   . $BDIR/servers.sh
   MACHINES=$SERVERS
 else
-  MACHINES=`$BDIR/getBlueGreenOpposites.sh`
+  MPD=`$BDIR/getBlueGreenOpposites.sh`
+  MST=`$BDIR/getBlueGreenOpposites.sh tiles-st.trimet.org`
+  MACHINES="$MPD $MST"
+  MACHINES="$MST" # TODO: remove me
 fi

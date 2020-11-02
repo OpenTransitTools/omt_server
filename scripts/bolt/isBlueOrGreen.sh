@@ -12,7 +12,7 @@ DIR=`dirname $0`
 . ${DIR}/servers.sh
 
 DOMAIN="trimet.org"
-MACHINE=${1:-"tiles-st.$DOMAIN"}
+MACHINE=${1:-"tiles.$DOMAIN"}
 DEBUG=${2:-"FALSE"}
 
 URL="https://${MACHINE}"

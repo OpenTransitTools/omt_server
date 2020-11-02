@@ -2,7 +2,7 @@ DIR=`dirname $0`
 . ${DIR}/servers.sh
 
 DIR=$(cd `dirname $0` && pwd)
-MACHINE=${1:-"tiles-st.trimet.org"}
+MACHINE=${1:-"tiles.trimet.org"}
 DEBUG=${2:-"FALSE"}
 COLOR=`$DIR/isBlueOrGreen.sh $MACHINE $DEBUG`
 HEAD=${MACHINE%%[-.]*}  # eg the 'tiles' from tile-st.trimet.org or tiles.trimet.org
