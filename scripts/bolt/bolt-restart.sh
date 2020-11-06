@@ -17,6 +17,6 @@ do
 
   # step 3: check that GL docker is running 
   #TODO: grab a static image ... make sure it's valid and of size
-  #sleep 50
+  #sleep 30
   #curl $m:8080/
 done
