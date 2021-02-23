@@ -12,12 +12,16 @@
 #
 DIR=`dirname $0`
 
-SERVER="http://maps6.trimet.org"
+START_GL_SH=${START_GL_SH:="start_gl_nohup.sh"}
+
+ROOT_DIR=${ROOT_DIR:="~/omt_server"}
+DATA_DIR="$ROOT_DIR/openmaptiles/data"
+
+OSM_SERVER=${OSM_SERVER:="http://maps6.trimet.org"}
 OSM_META_FILE="or-wa.osm-stats"
 OSM_FILE="or-wa-carto.osm.pbf"
-OSM_META_URL="$SERVER/pelias/$OSM_META_FILE"
-OSM_DATA_URL="$SERVER/pelias/$OSM_FILE"
-DATA_DIR=~/omt_server/openmaptiles/data
+OSM_META_URL="$OSM_SERVER/pelias/$OSM_META_FILE"
+OSM_DATA_URL="$OSM_SERVER/pelias/$OSM_FILE"
 
 
 function update_osm_data() {
@@ -62,14 +66,18 @@ function check_osm_meta_data() {
     mkdir $tmp_dir
     curl $OSM_META_URL > $tmp_dir/$OSM_META_FILE
 
+    # step 1b: make sure we have existing meta file to compare
+    if [ ! -f $DATA_DIR/$OSM_META_FILE ]; then
+      echo "NEW" > $DATA_DIR/$OSM_META_FILE
+    fi
+    
     # step 2: compare new meta data vs. old  
     DF=`diff $DATA_DIR/$OSM_META_FILE $tmp_dir/$OSM_META_FILE`
     if [ -z "$DF"  ]; then
 	echo "OSM data match ... not reloading"
-	ret_val=0
+	ret_val=1
     else
 	echo "OSM (meta) data DOES NOT match (eg: $DF)"
-        mv $tmp_dir/$OSM_META_FILE $DATA_DIR
 	ret_val=1
     fi
     rm -rf $tmp_dir
@@ -86,10 +94,10 @@ if [ $new == 1 ]; then
   echo "step 1: blow away existing GL / OMT Docker and data"
   rm -f $DIR/../gl/data/*
   `$DIR/nuke.sh ALL`
- 
+
   echo "step 2: "
-  update_osm_data
-  #`$DIR/import.sh`
-  `$DIR/start_gl_nohup.sh`
-  `$DIR/bolt/deploy.sh`
+   update_osm_data
+  `$DIR/import.sh`
+  `$DIR/$START_GL_SH`
+  #`$DIR/bolt/deploy.sh`
 fi
