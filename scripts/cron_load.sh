@@ -14,7 +14,7 @@ DIR=`dirname $0`
 
 START_GL_SH=${START_GL_SH:="start_gl_nohup.sh"}
 
-ROOT_DIR=${ROOT_DIR:="~/omt_server"}
+ROOT_DIR=${ROOT_DIR:="$HOME/omt_server"}
 DATA_DIR="$ROOT_DIR/openmaptiles/data"
 
 OSM_SERVER=${OSM_SERVER:="http://maps6.trimet.org"}
