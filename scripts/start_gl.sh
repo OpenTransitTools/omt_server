@@ -33,9 +33,13 @@ fi
 # There may be useful things to do with the --mbtiles and --config flags
 # This can be adapted to docker-compose, but we can work on that later.
 #
-# NOTE: Frank replaced the --rm param with --restart=always to keep this puppy running
+# NOTES:
+#  Sep 20 (Frank): replaced --rm param with --restart=always to keep this puppy running.
+#  Feb 21 (Frank): changed -p 8080:80 to 8080:8080, as v3.1.x no longer has to use port w/in the container, and now running port 80 (inside the container)  w/out root access is a non-starter.
 #
-docker run --restart=always -it -v $(pwd):/data -p 8080:80 -e "NODE_ENV=dev" maptiler/tileserver-gl --verbose
+# https://hub.docker.com/r/maptiler/tileserver-gl
+#
+docker run --restart=always -it -v $(pwd):/data -p 8080:8080 -e "NODE_ENV=dev" maptiler/tileserver-gl --verbose
 
 # start maputnik editor 
 if [[ $1 == *'MAP'* || $1 == *'ED'* ]]; then
