@@ -318,8 +318,8 @@
         ["==", "$type", "LineString"]
       ],
       "layout": {
-        "line-cap": "round",
-        "line-join": "round",
+        "line-cap": "butt",
+        "line-join": "miter",
         "visibility": "visible"
       },
       "paint": {
@@ -341,8 +341,8 @@
         ["==", "$type", "LineString"]
       ],
       "layout": {
-        "line-cap": "round",
-        "line-join": "round",
+        "line-cap": "butt",
+        "line-join": "miter",
         "visibility": "visible"
       },
       "paint": {
