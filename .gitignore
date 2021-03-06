@@ -3,6 +3,7 @@ gl/server.*
 **/core.*
 **/*.txt
 **/*backup
+**/*bkup
 **/*.mbtiles
 *.pbf
 web/gl*/*
