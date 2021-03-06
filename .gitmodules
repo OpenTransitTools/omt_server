@@ -1,3 +1,4 @@
 [submodule "openmaptiles"]
-	path = openmaptiles
-	url = https://github.com/openmaptiles/openmaptiles.git
+  path = openmaptiles
+  url = https://github.com/openmaptiles/openmaptiles.git
+  branch = master
