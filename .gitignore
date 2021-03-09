@@ -1,5 +1,6 @@
 gl/server.*
 **/old
+**/data
 **/core.*
 **/*.txt
 **/*backup
