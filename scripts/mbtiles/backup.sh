@@ -1,5 +1,5 @@
 DIR=`dirname $0`
-. $DIR/base.sh
+. $DIR/../base.sh
 
 if [ -d $GL_DATA_DIR ]
 then

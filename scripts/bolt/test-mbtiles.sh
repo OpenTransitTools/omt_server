@@ -9,21 +9,6 @@ BDIR=`dirname $0`
 rm -rf /tmp/* > /dev/null 2>&1 
 
 
-function curl_test() {
-  cmd="curl $1 > /tmp/$2"
-  echo $cmd
-  eval $cmd > /dev/null 2>&1
-
-  size=`ls -ltr /tmp/$2 | awk -F" " '{ print $5 }'`
-  if [[ $size -gt 300000 ]]
-  then
-    echo "/tmp/$2 looks GOOD at size $size"
-  else
-    echo "/tmp/$2 seems SMALL at $size" 
-  fi
-}
-
-
 # step 1: loop thru machines
 for m in $MACHINES
 do

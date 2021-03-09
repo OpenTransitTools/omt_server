@@ -15,7 +15,7 @@ then
     echo "copying $MBTILES_PATH over to $m"
 
     # step 2: backup existing data dir 
-    bolt command run "update.sh; cd $OMT_DIR; ./scripts/backup_mbtiles.sh" --targets $m
+    bolt command run "update.sh; cd $OMT_DIR; ./scripts/mbtiles/backup.sh" --targets $m
 
     # step 3: scp copy data dir to server
     scp -r $GL_DATA_DIR $m:$GL_DATA_DIR
