@@ -1,8 +1,16 @@
 DIR=`dirname $0`
 
-# couple variables that can changed based on install 
+
+# variables that can changed based on install
 MBTILES_FILE=${MBTILES_FILE:="or-wa.mbtiles"}
 OMT_DIR=${OMT_DIR:="$HOME/omt_server"}
+
+OSM_SERVER=${OSM_SERVER:="http://maps6.trimet.org"}
+OSM_META_FILE="or-wa.osm-stats"
+OSM_FILE="or-wa-carto.osm.pbf"
+OSM_META_URL="$OSM_SERVER/pelias/$OSM_META_FILE"
+OSM_DATA_URL="$OSM_SERVER/pelias/$OSM_FILE"
+
 
 # openmaptiles (build area) mbtiles 
 OMT_DATA_DIR="$OMT_DIR/openmaptiles/data"
@@ -32,4 +40,3 @@ function curl_test() {
     echo "/tmp/$2 seems SMALL at $size" 
   fi
 }
-

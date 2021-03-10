@@ -1,11 +1,13 @@
 # prep the openmaptiles (remote repo) directory
 DIR=`dirname $0`
 $DIR/git_update.sh
+$DIR/env_update.sh
 
 # make the output directory
 cd $DIR/../openmaptiles/
 mkdir ./data/
 rm ./data/*yml
+rm -rf /srv/docker_vols/openmaptiles_pgdata/*
 
 # check data directory (maybe use in omt_server/../*pbf) for a .pbf file to import
 if [ -f data/*.pbf ]; then
@@ -40,6 +42,5 @@ make analyze-db
 make test-perf-null
 
 echo "step 3 of 3: generate .mbtiles file"
-make generate-dc-config
-../scripts/yml_updates.sh
+make generate-bbox-file
 make generate-tiles

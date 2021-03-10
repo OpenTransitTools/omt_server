@@ -1,6 +1,6 @@
 DIR=`dirname $0`
 FILE=$DIR/../openmaptiles/.env
-MAX_ZOOM=${MAX_ZOOM:=16}
+MAX_ZOOM=${MAX_ZOOM:=14}
 
 # bkup file
 cp $FILE $FILE.orig
