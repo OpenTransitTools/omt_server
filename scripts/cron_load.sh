@@ -110,5 +110,5 @@ if [ $new == 1 ]; then
 
   echo "step E: test... "
   cd $OMT_DIR
-  ./scripts/test_
+  ./scripts/test_gl_images.sh
 fi
