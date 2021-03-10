@@ -28,6 +28,7 @@ MBTILES_PATH="$GL_DATA_DIR/$MBTILES_FILE"
 ## curl a couple of image files from gl, and them chekc their side
 ##
 function curl_test() {
+  rm -f /tmp/$2
   cmd="curl $1 > /tmp/$2"
   echo $cmd
   eval $cmd > /dev/null 2>&1

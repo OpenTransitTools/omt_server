@@ -5,10 +5,6 @@ BDIR=`dirname $0`
 . $BDIR/bolt-base.sh
 . $BDIR/../base.sh
 
-# step 0: clear out tmp
-rm -rf /tmp/* > /dev/null 2>&1 
-
-
 # step 1: loop thru machines
 for m in $MACHINES
 do

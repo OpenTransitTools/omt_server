@@ -1,7 +1,6 @@
 BDIR=`dirname $0`
 
 
-
 if [[ $1 == 'ALL' ]]
 then
   . $BDIR/servers.sh

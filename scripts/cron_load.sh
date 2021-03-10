@@ -82,6 +82,8 @@ function check_osm_meta_data() {
 
 
 # main: update data 
+rm -rf /tmp/*
+
 cd $OMT_DIR
 ./scripts/git_update.sh
 
@@ -93,14 +95,20 @@ if [ $new == 1 ]; then
 
   echo "step B: load and create *.mbtiles in openmaptiles/data dir"
   update_osm_data
+
   cd $OMT_DIR
   ./scripts/import.sh
 
   echo "step C: restart and test GL with this new *.mbtiles file"
   cd $OMT_DIR
+  ./scripts/mbtiles/copy.sh
   ./scripts/mbtiles/restart.sh
  
   echo "step D: deploy this *.mbtiles into the GREEN/BLUE system not in production"
   cd $OMT_DIR
   ./scripts/bolt/deploy.sh
+
+  echo "step E: test... "
+  cd $OMT_DIR
+  ./scripts/test_
 fi
