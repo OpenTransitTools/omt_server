@@ -37,17 +37,20 @@ function update_osm_data() {
 
   # step 3: check new OSM data for size, etc... if not valid, revert back to old stuff
   size=`ls -ltr $OMT_DATA_DIR/$OSM_FILE | awk -F" " '{ print $5 }'`
-  if [[ $size -gt 3000000 ]]
+  if [[ $size -lt 10000000 ]]
   then
     echo "$OMT_DATA_DIR/$OSM_FILE is wayyy too small at $size"
-    exit    
+    exit
   fi
 }
 
 
+#
+# returns true if the old and new gtfs files don't match
+#
 function check_osm_meta_data() {
-  # returns true if the old and new gtfs files don't match
-  ret_val=0
+  # set to true ... no data dir
+  ret_val=1
 
   if [ -d $OMT_DATA_DIR ]; then
 
@@ -66,7 +69,7 @@ function check_osm_meta_data() {
     DF=`diff $OMT_DATA_DIR/$OSM_META_FILE $tmp_dir/$OSM_META_FILE`
     if [ -z "$DF"  ]; then
 	echo "OSM data match ... not reloading"
-	ret_val=1
+	ret_val=0
     else
 	echo "OSM (meta) data DOES NOT match (eg: $DF)"
 	ret_val=1
@@ -83,7 +86,6 @@ check_osm_meta_data
 new=$?
 if [ $new == 1 ]; then
   echo "step A: blow away existing GL / OMT Docker and data"
-  rm -f $DIR/../gl/data/*
   $DIR/nuke.sh ALL
 
   echo "step B: load and create *.mbtiles in openmaptiles/data dir"
