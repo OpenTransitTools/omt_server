@@ -81,7 +81,10 @@ function check_osm_meta_data() {
 }
 
 
-# update data 
+# main: update data 
+cd $OMT_DIR
+./scripts/git_update.sh
+
 check_osm_meta_data
 new=$?
 if [ $new == 1 ]; then
