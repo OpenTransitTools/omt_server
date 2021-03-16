@@ -158,8 +158,7 @@
       "type": "fill",
       "source": "openmaptiles",
       "source-layer": "building",
-      "minzoom": 16,
-      "maxzoom": 24,
+      "minzoom": 15,
       "paint": {
         "fill-antialias": true,
         "fill-color": "rgba(238, 238, 238, 1)",
@@ -569,16 +568,16 @@
       }
     },
     {
-      "id": "poi_label",
+      "id": "poi_label_3",
       "type": "symbol",
       "source": "openmaptiles",
       "source-layer": "poi",
-      "minzoom": 14,
-      "maxzoom": 24,
+      "minzoom": 17,
       "filter": [
         "all",
         ["==", "$type", "Point"],
-        ["==", "rank", 1],
+        [">=", "rank", 21],
+        ["any", ["!has", "level"], ["==", "level", 0]],
         ["!in", "class", "bus", "railway"]
       ],
       "layout": {
@@ -586,9 +585,77 @@
         "text-anchor": "top",
         "text-field": "{name:latin}\n{name:nonlatin}",
         "text-font": ["Source Sans Pro Light"],
-        "text-max-width": 8,
-        "text-offset": [0, 0.5],
-        "text-size": 11,
+        "text-max-width": 9,
+        "text-offset": [0, 0.6],
+        "text-size": 9,
+        "text-padding": 2,
+        "visibility": "visible",
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0.1
+      },
+      "paint": {
+        "text-color": "rgba(92, 93, 93, 1)",
+        "text-halo-blur": 1,
+        "text-halo-color": "rgba(255,255,255,0.75)",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi_label_2",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "minzoom": 16,
+      "filter": [
+        "all",
+        ["==", "$type", "Point"],
+        ["<=", "rank", 20],
+        [">=", "rank", 10],
+        ["any", ["!has", "level"], ["==", "level", 0]],
+        ["!in", "class", "bus", "railway"]
+      ],
+      "layout": {
+        "icon-size": 1,
+        "text-anchor": "top",
+        "text-field": "{name:latin}\n{name:nonlatin}",
+        "text-font": ["Source Sans Pro Light"],
+        "text-max-width": 9,
+        "text-offset": [0, 0.6],
+        "text-size": 9,
+        "text-padding": 2,
+        "visibility": "visible",
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0.1
+      },
+      "paint": {
+        "text-color": "rgba(92, 93, 93, 1)",
+        "text-halo-blur": 1,
+        "text-halo-color": "rgba(255,255,255,0.75)",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "poi_label_1",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "minzoom": 14,
+      "filter": [
+        "all",
+        ["==", "$type", "Point"],
+        ["<=", "rank", 9],
+        ["any", ["!has", "level"], ["==", "level", 0]],
+        ["!in", "class", "bus", "railway"]
+      ],
+      "layout": {
+        "icon-size": 1,
+        "text-anchor": "top",
+        "text-field": "{name:latin}\n{name:nonlatin}",
+        "text-font": ["Source Sans Pro Light"],
+        "text-max-width": 9,
+        "text-offset": [0, 0.6],
+        "text-size": 9,
+        "text-padding": 2,
         "visibility": "visible",
         "text-transform": "uppercase",
         "text-letter-spacing": 0.1
