@@ -12,8 +12,10 @@ do
   echo "restarting gl tileserver on $m"
 
   # step 2: nuke the existing GL stuff
+  bolt command run "cd $OMT_DIR; git reset --hard HEAD" --targets $m
   bolt command run "update.sh; cd $OMT_DIR; ./scripts/nuke.sh ALL" --targets $m
 
   # step 3: restart GL
-  bolt command run "cd $OMT_DIR/gl; run-nohup.sh" --targets $m
+  bolt command run "cd $OMT_DIR; ./scripts/gen_hostname_txt.sh" --targets $m
+  bolt command run "cd $OMT_DIR/gl/; ./run-nohup.sh" --targets $m
 done
