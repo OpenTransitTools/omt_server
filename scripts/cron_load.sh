@@ -81,7 +81,9 @@ function check_osm_meta_data() {
 }
 
 
-# main: update data 
+# main: update data
+NOW=$( date '+%F @ %H:%M:%S' ) 
+echo "tile reload is starting ($NOW)" 
 rm -rf /tmp/*
 
 cd $OMT_DIR
@@ -93,22 +95,29 @@ if [ $new == 1 ]; then
   echo "step A: blow away existing GL / OMT Docker and data"
   $DIR/nuke.sh ALL
 
-  echo "step B: load and create *.mbtiles in openmaptiles/data dir"
+  NOW=$( date '+%F @ %H:%M:%S' ) 
+  echo "step B: load and create *.mbtiles in openmaptiles/data dir ($NOW)"
   update_osm_data
 
   cd $OMT_DIR
   ./scripts/import.sh
 
-  echo "step C: restart and test GL with this new *.mbtiles file"
+  NOW=$( date '+%F @ %H:%M:%S' ) 
+  echo "step C: restart and test GL with this new *.mbtiles file ($NOW)"
   cd $OMT_DIR
   ./scripts/mbtiles/copy.sh
   ./scripts/mbtiles/restart.sh
  
-  echo "step D: deploy this *.mbtiles into the GREEN/BLUE system not in production"
+  NOW=$( date '+%F @ %H:%M:%S' ) 
+  echo "step D: deploy this *.mbtiles into the GREEN/BLUE system not in production ($NOW)"
   cd $OMT_DIR
   ./scripts/bolt/deploy.sh
 
-  echo "step E: test... "
+  NOW=$( date '+%F @ %H:%M:%S' ) 
+  echo "step E: test... ($NOW)"
   cd $OMT_DIR
   ./scripts/test_gl_images.sh
 fi
+
+NOW=$( date '+%F @ %H:%M:%S' ) 
+echo "tile reload is DONE ($NOW)"
