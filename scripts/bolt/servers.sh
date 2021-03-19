@@ -10,3 +10,7 @@ BLUES="$BLUES_ST $BLUES_PD"
 GREENS="$GREENS_ST $GREENS_PD"
 
 SERVERS="$BLUES $GREENS"
+
+CACHE_USER="web_tiles-trimet-org"
+CACHE_SERVERS="rj-st-mapweb01 rj-pd-mapweb01 cs-pd-mapweb01"
+CACHE_SERVERS="rj-st-mapweb01"
