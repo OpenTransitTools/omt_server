@@ -1,3 +1,13 @@
+1.0.0 (2021-05-10)
+------------------
+- removes the python junk to simplify the project / structure
+- functionally same as 0.1.0 in terms of styles and scripts, etc...
+
+0.1.0 (2021-05-05)
+------------------
+- script based and running
+- still contains the python junk tho...
+
 0.0.1 (2020-07-20)
 ------------------
 - initial
