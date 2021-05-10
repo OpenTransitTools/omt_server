@@ -42,5 +42,5 @@ make analyze-db
 make test-perf-null
 
 echo "step 3 of 3: generate .mbtiles file"
-make generate-bbox-file
+make generate-dc-config
 make generate-tiles
