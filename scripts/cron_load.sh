@@ -45,42 +45,6 @@ function update_osm_data() {
 }
 
 
-#
-# returns true if the old and new gtfs files don't match
-#
-function check_osm_meta_data() {
-  # set to true ... no data dir
-  ret_val=1
-
-  if [ -d $OMT_DATA_DIR ]; then
-
-    # step 1: grab meta data into tmp dir
-    tmp_dir="$OMT_DATA_DIR/tmp"
-    rm -rf $tmp_dir
-    mkdir $tmp_dir
-    curl $OSM_META_URL > $tmp_dir/$OSM_META_FILE
-
-    # step 1b: make sure we have existing meta file to compare
-    if [ ! -f $OMT_DATA_DIR/$OSM_META_FILE ]; then
-      echo "NEW" > $OMT_DATA_DIR/$OSM_META_FILE
-    fi
-    
-    # step 2: compare new meta data vs. old  
-    DF=`diff $OMT_DATA_DIR/$OSM_META_FILE $tmp_dir/$OSM_META_FILE`
-    if [ -z "$DF"  ]; then
-	echo "OSM data match ... not reloading"
-	ret_val=0
-    else
-	echo "OSM (meta) data DOES NOT match (eg: $DF)"
-	ret_val=1
-    fi
-    rm -rf $tmp_dir
-  fi
-
-  return $ret_val
-}
-
-
 # main: update data
 NOW=$( date '+%F @ %H:%M:%S' ) 
 echo "tile reload is starting ($NOW)" 
