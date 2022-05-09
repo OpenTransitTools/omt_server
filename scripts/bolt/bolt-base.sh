@@ -15,3 +15,5 @@ else
   MST=`$BDIR/getBlueGreenOpposites.sh tiles-st.trimet.org`
   MACHINES="$MPD $MST"
 fi
+
+#MACHINES=${1:-$MACHINES}
