@@ -12,6 +12,7 @@
       "jpeg": 80,
       "webp": 90
     },
+    "serveAllFonts": true,
     "maxScaleFactor": 6,
     "tileMargin": 12,
     "frontPage": true
