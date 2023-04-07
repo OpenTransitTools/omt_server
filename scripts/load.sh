@@ -34,13 +34,12 @@ function update_osm_data() {
 
   # step 3: check new OSM data for size, etc... if not valid, revert back to old stuff
   size=`ls -ltr $OMT_DATA_DIR/$OSM_FILE | awk -F" " '{ print $5 }'`
-  if [[ $size -lt 10000000 ]]
+  if [[ $size -lt $OSM_PBF_SIZE ]]
   then
     echo "$OMT_DATA_DIR/$OSM_FILE is wayyy too small at $size"
     exit
   fi
 }
-
 
 # main: update data
 NOW=$( date '+%F @ %H:%M:%S' ) 

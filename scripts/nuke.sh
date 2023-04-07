@@ -8,7 +8,7 @@ docker container rm $(docker ps -a -q)
 docker-compose down
 wait;
 
-if [[ $1 == 'ALL' ]]
+if [[ $1 == 'NALL' ]]
 then
     echo NUKE all images and containers
     echo
