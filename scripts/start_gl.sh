@@ -17,7 +17,9 @@
 #
 # https://hub.docker.com/r/maptiler/tileserver-gl
 #
-docker run --restart=always -it -v $(pwd):/data -p 8080:8080 -e "NODE_ENV=dev" maptiler/tileserver-gl --verbose
+TS="maptiler/tileserver-gl" # latest
+TS="maptiler/tileserver-gl:v4.4.1"
+docker run --restart=always -it -v $(pwd):/data -p 8080:8080 -e "NODE_ENV=dev" $TS --verbose
 
 # start maputnik editor 
 if [[ $1 == *'MAP'* || $1 == *'ED'* ]]; then
