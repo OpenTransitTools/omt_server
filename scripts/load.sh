@@ -47,6 +47,7 @@ echo "tile reload is starting ($NOW)"
 rm -rf /tmp/*
 
 cd $OMT_DIR
+rm -rf ./cache
 ./scripts/git_update.sh
 
 check_osm_meta_data
