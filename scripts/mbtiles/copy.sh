@@ -2,7 +2,7 @@ DIR=`dirname $0`
 . $DIR/../base.sh
 
 size=`ls -ltr $OMT_MBTILES_PATH | awk -F" " '{ print $5 }'`
-if [[ $size -gt 10000000 ]]
+if [[ $size -gt $MIN_FILE_SIZE ]]
 then
   echo "BKUP->COPY"
   $DIR/backup.sh

@@ -1,12 +1,13 @@
 DIR=`dirname $0`
 
 # variables that can changed based on install
+MIN_FILE_SIZE=${MIN_FILE_SIZE:=10000000}
 MBTILES_FILE=${MBTILES_FILE:="or-wa.mbtiles"}
 OMT_DIR=${OMT_DIR:="$HOME/omt_server"}
 
 OSM_SERVER=${OSM_SERVER:="http://maps6.trimet.org"}
 
-OSM_PBF_SIZE=10000000
+OSM_PBF_SIZE=$MIN_FILE_SIZE
 OSM_META_FILE="or-wa.osm-stats"
 OSM_FILE="or-wa-carto.osm.pbf"
 OSM_META_URL="$OSM_SERVER/pelias/$OSM_META_FILE"
@@ -21,12 +22,11 @@ OMT_MBTILES_PATH="$OMT_DATA_DIR/tiles.mbtiles"
 GL_DIR="$OMT_DIR/gl"
 GL_DATA_DIR="$GL_DIR/data"
 GL_DATA_BKUP_DIR="$GL_DIR/data-bkup"
-
-MBTILES_PATH="$GL_DATA_DIR/$MBTILES_FILE"
-
+GL_MBTILES_PATH="$GL_DATA_DIR/$MBTILES_FILE"
+MBTILES_PATH=$GL_MBTILES_PATH
 
 ##
-## curl a couple of image files from gl, and them chekc their side
+## curl a couple of image files from gl, and them check their size
 ##
 function curl_test() {
   rm -f /tmp/$2
