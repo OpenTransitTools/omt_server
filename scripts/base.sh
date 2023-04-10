@@ -8,7 +8,7 @@ OSM_SERVER=${OSM_SERVER:="http://maps6.trimet.org"}
 
 OSM_PBF_SIZE=10000000
 OSM_META_FILE="or-wa.osm-stats"
-OSM_FILE="or-wa.osm.pbf"
+OSM_FILE="or-wa-carto.osm.pbf"
 OSM_META_URL="$OSM_SERVER/pelias/$OSM_META_FILE"
 OSM_DATA_URL="$OSM_SERVER/pelias/$OSM_FILE"
 
