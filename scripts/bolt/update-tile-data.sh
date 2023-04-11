@@ -27,6 +27,9 @@ then
   sleep 3
   echo
   bolt command run "docker ps" --targets $MACHINE
+  sleep 3
+  echo
+  $BDIR/test-gl.sh $MACHINE
   echo
 else
   echo
