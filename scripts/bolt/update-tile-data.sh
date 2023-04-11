@@ -27,8 +27,9 @@ then
   sleep 3
   echo
   bolt command run "docker ps" --targets $MACHINE
-  sleep 3
   echo
+  echo "SLEEP for 30 seconds, then testing bolt/test-gl.sh $MACHINE..."
+  sleep 30
   $BDIR/test-gl.sh $MACHINE
   echo
 else
