@@ -4,7 +4,7 @@
 BDIR=`dirname $0`
 . $BDIR/bolt-base.sh
 
-TEST=$1
+TEST=${1:-"1"}
 
 echo "uptime of the GL servers (docker instances):"; echo; echo;
 for s in $SERVERS

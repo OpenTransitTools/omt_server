@@ -5,7 +5,7 @@ BDIR=`dirname $0`
 . $BDIR/bolt-base.sh
 . $BDIR/../base.sh
 
-MACHINE=${1:-"cs-st-mapapp01"}
+MACHINE=${1:-$DEF_MACHINE}
 
 # step 0: validate *.mbtiles ... proper size before updating a server
 size=`ls -ltr $MBTILES_PATH | awk -F" " '{ print $5 }'`
@@ -22,12 +22,9 @@ then
 
   INFO="step 3: restart GL server on $MACHINE"
   echo; echo $INFO
-  bolt command run "cd $OMT_DIR; ./scripts/gen_hostname_txt.sh" --targets $MACHINE
-  bolt command run "cd $OMT_DIR/gl/; ./run-nohup.sh" --targets $MACHINE
-  sleep 3
+  $BDIR/restart-gl.sh $MACHINE
   echo
-  bolt command run "docker ps" --targets $MACHINE
-  echo
+
   echo "SLEEP for 30 seconds, then testing bolt/test-gl.sh $MACHINE..."
   sleep 30
   $BDIR/test-gl.sh $MACHINE
@@ -38,4 +35,3 @@ else
   echo "NOT updating / restarting $MACHINE !!!"
   echo
 fi
-

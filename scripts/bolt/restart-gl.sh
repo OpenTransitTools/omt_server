@@ -5,17 +5,16 @@ BDIR=`dirname $0`
 . $BDIR/bolt-base.sh
 . $BDIR/../base.sh
 
+MACHINE=${1:-$DEF_MACHINE}
+echo $MACHINE
 
-# step 1: loop thru machines
-for m in $MACHINES
-do
-  echo "restarting gl tileserver on $m"
+INFO=">>step A: kill OMT on server $MACHINE"
+echo; echo $INFO
+bolt command run "cd $OMT_DIR; ./scripts/nuke.sh ALL" --targets $MACHINE
 
-  # step 2: nuke the existing GL stuff
-  bolt command run "cd $OMT_DIR; git reset --hard HEAD" --targets $m
-  bolt command run "update.sh; cd $OMT_DIR; ./scripts/nuke.sh ALL" --targets $m
-
-  # step 3: restart GL
-  bolt command run "cd $OMT_DIR; ./scripts/gen_hostname_txt.sh" --targets $m
-  bolt command run "cd $OMT_DIR/gl/; ./run-nohup.sh" --targets $m
-done
+echo ">>step B: restarting gl tileserver on $MACHINE"
+bolt command run "cd $OMT_DIR; ./scripts/gen_hostname_txt.sh" --targets $MACHINE
+bolt command run "cd $OMT_DIR/gl/; ./run-nohup.sh" --targets $MACHINE
+sleep 3
+echo
+bolt command run "docker ps" --targets $MACHINE
