@@ -1,7 +1,7 @@
 {
   "version": 8,
   "name": "TriMet + Routes 3D",
-  "id": "3d-routes"
+  "id": "3d-routes",
   "metadata": {
     "mapbox:autocomposite": false,
     "maputnik:renderer": "mbgljs",
