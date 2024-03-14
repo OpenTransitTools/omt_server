@@ -425,7 +425,7 @@
       }
     },
     {
-      "id": "bus-routes",
+      "id": "BUS",
       "type": "line",
       "source": "routes",
       "minzoom": 11,
@@ -444,7 +444,7 @@
       }
     },
     {
-      "id": "wes",
+      "id": "RAIL",
       "type": "line",
       "source": "routes",
       "filter": ["all", ["==", "route_type", 2]],
@@ -460,7 +460,7 @@
       }
     },
     {
-      "id": "psc",
+      "id": "SC",
       "type": "line",
       "source": "routes",
       "filter": ["in", "route_id", "193", "194", "195"],
@@ -474,7 +474,7 @@
       "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 1.5}
     },
     {
-      "id": "brt-routes",
+      "id": "BRT",
       "type": "line",
       "source": "routes",
       "minzoom": 9,
@@ -484,7 +484,7 @@
         "line-cap": "round",
         "line-join": "round"
       },
-      "paint": {"line-color": ["get", "route_color"], "line-opacity": 0.8, "line-width": 2.5}
+      "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 2.5}
     },
     {
       "id": "MAX",
@@ -496,7 +496,7 @@
         "line-cap": "round",
         "line-join": "round"
       },
-      "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 3.5}
+      "paint": {"line-color": ["get", "route_color"], "line-opacity": 0.8, "line-width": 3.5}
     },
     {
       "id": "poi_label",
