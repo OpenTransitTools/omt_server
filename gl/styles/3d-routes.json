@@ -14,7 +14,7 @@
     },
     "routes": {
       "type": "geojson",
-      "data": "https://maps.trimet.org/wfs?srsName=EPSG:4326&service=WFS&version=1.0&request=GetFeature&typeName=current%3Aroute&outputFormat=json"
+      "data": "https://ws-st.trimet.org/geoserver/wfs?srsName=EPSG:4326&service=WFS&version=1.0&request=GetFeature&typeName=ott%3Atrimet_routes&outputFormat=json"
     }
   },
   "glyphs": "{fontstack}/{range}.pbf",
@@ -505,37 +505,11 @@
       }
     },
     {
-      "id": "maxblue",
-      "type": "line",
-      "source": "routes",
-      "filter": ["all", ["==", "type", 5], ["==", "id", 100]],
-      "layout": {
-        "visibility": "visible",
-        "line-cap": "round",
-        "line-join": "round"
-      },
-      "paint": {"line-color": "#084C8D", "line-opacity": 1, "line-width": 5}
-    },
-    {
-      "id": "maxred",
-      "type": "line",
-      "source": "routes",
-      "filter": ["all", ["==", "type", 5], ["==", "id", 90]],
-      "layout": {
-        "visibility": "visible",
-        "line-cap": "round",
-        "line-join": "round",
-        "line-miter-limit": 1,
-        "line-round-limit": 1
-      },
-      "paint": {"line-color": "#D81526", "line-opacity": 1, "line-width": 3}
-    },
-    {
       "id": "bus-routes",
       "type": "line",
       "source": "routes",
       "minzoom": 11,
-      "filter": ["all", ["==", "type", 1]],
+      "filter": ["all", ["==", "route_type", 3]],
       "layout": {
         "visibility": "visible",
         "line-cap": "round",
@@ -550,24 +524,10 @@
       }
     },
     {
-      "id": "psc",
-      "type": "line",
-      "source": "routes",
-      "filter": ["all", ["==", "type", 4]],
-      "layout": {
-        "visibility": "visible",
-        "line-cap": "round",
-        "line-join": "round",
-        "line-miter-limit": 0,
-        "line-round-limit": 0
-      },
-      "paint": {"line-color": "#ce0f69", "line-opacity": 1, "line-width": 1.5}
-    },
-    {
       "id": "wes",
       "type": "line",
       "source": "routes",
-      "filter": ["all", ["==", "type", 3]],
+      "filter": ["all", ["==", "route_type", 2]],
       "layout": {
         "visibility": "visible",
         "line-cap": "square",
@@ -580,53 +540,43 @@
       }
     },
     {
-      "id": "maxorange",
+      "id": "psc",
       "type": "line",
       "source": "routes",
-      "filter": ["all", ["==", "type", 5], ["==", "id", 290]],
+      "filter": ["in", "route_id", "193", "194", "195"],
       "layout": {
         "visibility": "visible",
         "line-cap": "round",
-        "line-join": "round"
+        "line-join": "round",
+        "line-miter-limit": 0,
+        "line-round-limit": 0
       },
-      "paint": {"line-color": "#f58220", "line-opacity": 1, "line-width": 3.5}
+      "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 1.5}
     },
     {
       "id": "brt-routes",
       "type": "line",
       "source": "routes",
-      "minzoom": 10,
-      "filter": ["all", ["==", "type", 8]],
+      "minzoom": 9,
+      "filter": ["in", "route_id", "2"],
       "layout": {
         "visibility": "visible",
         "line-cap": "round",
         "line-join": "round"
       },
-      "paint": {"line-color": "#61A60e", "line-opacity": 1, "line-width": 3}
+      "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 2.5}
     },
     {
-      "id": "maxgreen",
+      "id": "MAX",
       "type": "line",
       "source": "routes",
-      "filter": ["all", ["==", "type", 5], ["==", "id", 200]],
+      "filter": ["in", "route_id", "290", "200", "190", "90", "100"],
       "layout": {
         "visibility": "visible",
         "line-cap": "round",
         "line-join": "round"
       },
-      "paint": {"line-color": "#008852", "line-opacity": 1, "line-width": 2}
-    },
-    {
-      "id": "maxyellow",
-      "type": "line",
-      "source": "routes",
-      "filter": ["all", ["==", "type", 5], ["==", "id", 190]],
-      "layout": {
-        "visibility": "visible",
-        "line-cap": "round",
-        "line-join": "round"
-      },
-      "paint": {"line-color": "#f8c218", "line-opacity": 1, "line-width": 2}
+      "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 3.5}
     },
     {
       "id": "road_major_label",
