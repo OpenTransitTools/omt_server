@@ -508,6 +508,40 @@
       }
     },
     {
+      "id": "CBUS",
+      "type": "line",
+      "source": "routes",
+      "source-layer": "ctran_routes",
+      "minzoom": 11,
+      "filter": ["all", ["==", "route_type", 3]],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round",
+        "line-miter-limit": 0,
+        "line-round-limit": 0
+      },
+      "paint": {
+        "line-color": "rgba(19, 99, 144, 1)",
+        "line-opacity": 1,
+        "line-width": 0.5
+      }
+    },
+    {
+      "id": "CBRT",
+      "type": "line",
+      "source": "routes",
+      "source-layer": "ctran_routes",
+      "minzoom": 9,
+      "filter": ["in", "route_id", "050", "051"],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 2.5}
+    },
+    {
       "id": "BUS",
       "type": "line",
       "source": "routes",
