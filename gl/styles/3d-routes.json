@@ -13,8 +13,11 @@
       "url": "mbtiles://or-wa.mbtiles"
     },
     "routes": {
-      "type": "geojson",
-      "data": "https://ws-st.trimet.org/geoserver/wfs?srsName=EPSG:4326&service=WFS&version=1.0&request=GetFeature&typeName=ott%3Atrimet_routes&outputFormat=json"
+      "type": "vector",
+      "scheme": "tms",
+      "tiles": [
+        "https://ws-st.trimet.org/geoserver/gwc/service/tms/1.0.0/routes_n_stops@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf"
+      ]
     }
   },
   "glyphs": "{fontstack}/{range}.pbf",
@@ -508,6 +511,7 @@
       "id": "BUS",
       "type": "line",
       "source": "routes",
+      "source-layer": "trimet_routes",
       "minzoom": 11,
       "filter": ["all", ["==", "route_type", 3]],
       "layout": {
@@ -527,6 +531,7 @@
       "id": "RAIL",
       "type": "line",
       "source": "routes",
+      "source-layer": "trimet_routes",
       "filter": ["all", ["==", "route_type", 2]],
       "layout": {
         "visibility": "visible",
@@ -543,6 +548,7 @@
       "id": "SC",
       "type": "line",
       "source": "routes",
+      "source-layer": "trimet_routes",
       "filter": ["in", "route_id", "193", "194", "195"],
       "layout": {
         "visibility": "visible",
@@ -557,6 +563,7 @@
       "id": "BRT",
       "type": "line",
       "source": "routes",
+      "source-layer": "trimet_routes",
       "minzoom": 9,
       "filter": ["in", "route_id", "2"],
       "layout": {
@@ -570,6 +577,7 @@
       "id": "MAX",
       "type": "line",
       "source": "routes",
+      "source-layer": "trimet_routes",
       "filter": ["in", "route_id", "290", "200", "190", "90", "100"],
       "layout": {
         "visibility": "visible",
