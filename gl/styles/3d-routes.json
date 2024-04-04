@@ -16,7 +16,7 @@
       "type": "vector",
       "scheme": "tms",
       "tiles": [
-        "https://ws-st.trimet.org/geoserver/gwc/service/tms/1.0.0/ott:current_routes_n_stops@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf"
+        "https://ws-st.trimet.org/geoserver/gwc/service/tms/1.0.0/ott:current_routes_n_stops@EPSG:900913@pbf/{z}/{x}/{y}.pbf"
       ]
     }
   },
@@ -508,7 +508,7 @@
       }
     },
     {
-      "id": "BUS",
+      "id": "transit_bus",
       "type": "line",
       "source": "routes",
       "source-layer": "current_routes",
@@ -528,7 +528,7 @@
       }
     },
     {
-      "id": "RAIL",
+      "id": "transit_rail",
       "type": "line",
       "source": "routes",
       "source-layer": "current_routes",
@@ -545,7 +545,7 @@
       }
     },
     {
-      "id": "SC",
+      "id": "transit_sc",
       "type": "line",
       "source": "routes",
       "source-layer": "current_routes",
@@ -560,7 +560,7 @@
       "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 1.5}
     },
     {
-      "id": "BRT",
+      "id": "transit_brt",
       "type": "line",
       "source": "routes",
       "source-layer": "current_routes",
@@ -574,7 +574,7 @@
       "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 2.5}
     },
     {
-      "id": "MAX",
+      "id": "transit_max",
       "type": "line",
       "source": "routes",
       "source-layer": "current_routes",

@@ -15,11 +15,11 @@
       "url": "mbtiles://or-wa.mbtiles"
     },
     "routes": {
-      "type": "raster",
+      "type": "vector",
+      "scheme": "tms",
       "tiles": [
-        "https://ws-st.trimet.org/geoserver/wms?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&transparent=true&width=256&height=256&layers=routes"
-      ],
-      "tileSize": 256
+        "https://ws-st.trimet.org/geoserver/gwc/service/tms/1.0.0/ott:current_routes_n_stops@EPSG:900913@pbf/{z}/{x}/{y}.pbf"
+      ]
     }
   },
   "glyphs": "{fontstack}/{range}.pbf",
@@ -575,9 +575,83 @@
       }
     },
     {
-      "id": "rtp-routes",
-      "type": "raster",
-      "source": "routes"
+      "id": "transit_bus",
+      "type": "line",
+      "source": "routes",
+      "source-layer": "current_routes",
+      "minzoom": 11,
+      "filter": ["all", ["==", "route_type", 3]],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round",
+        "line-miter-limit": 0,
+        "line-round-limit": 0
+      },
+      "paint": {
+        "line-color": "rgba(19, 99, 144, 1)",
+        "line-opacity": 1,
+        "line-width": 0.5
+      }
+    },
+    {
+      "id": "transit_rail",
+      "type": "line",
+      "source": "routes",
+      "source-layer": "current_routes",
+      "filter": ["all", ["==", "route_type", 2]],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "square",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "rgba(0,0,0, 1)",
+        "line-opacity": 1,
+        "line-width": 3
+      }
+    },
+    {
+      "id": "transit_sc",
+      "type": "line",
+      "source": "routes",
+      "source-layer": "current_routes",
+      "filter": ["in", "route_id", "193", "194", "195"],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round",
+        "line-miter-limit": 0,
+        "line-round-limit": 0
+      },
+      "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 1.5}
+    },
+    {
+      "id": "transit_brt",
+      "type": "line",
+      "source": "routes",
+      "source-layer": "current_routes",
+      "minzoom": 9,
+      "filter": ["in", "route_id", "2", "050", "051"],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 2.5}
+    },
+    {
+      "id": "transit_max",
+      "type": "line",
+      "source": "routes",
+      "source-layer": "current_routes",
+      "filter": ["in", "route_id", "290", "200", "190", "90", "100"],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {"line-color": ["get", "route_color"], "line-opacity": 0.8, "line-width": 3.5}
     },
     {
       "id": "poi_label_3",
