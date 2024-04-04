@@ -16,7 +16,7 @@
       "type": "vector",
       "scheme": "tms",
       "tiles": [
-        "https://ws-st.trimet.org/geoserver/gwc/service/tms/1.0.0/routes_n_stops@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf"
+        "https://ws-st.trimet.org/geoserver/gwc/service/tms/1.0.0/ott:current_routes_n_stops@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf"
       ]
     }
   },
@@ -508,44 +508,10 @@
       }
     },
     {
-      "id": "CBUS",
-      "type": "line",
-      "source": "routes",
-      "source-layer": "ctran_routes",
-      "minzoom": 11,
-      "filter": ["all", ["==", "route_type", 3]],
-      "layout": {
-        "visibility": "visible",
-        "line-cap": "round",
-        "line-join": "round",
-        "line-miter-limit": 0,
-        "line-round-limit": 0
-      },
-      "paint": {
-        "line-color": "rgba(19, 99, 144, 1)",
-        "line-opacity": 1,
-        "line-width": 0.5
-      }
-    },
-    {
-      "id": "CBRT",
-      "type": "line",
-      "source": "routes",
-      "source-layer": "ctran_routes",
-      "minzoom": 9,
-      "filter": ["in", "route_id", "050", "051"],
-      "layout": {
-        "visibility": "visible",
-        "line-cap": "round",
-        "line-join": "round"
-      },
-      "paint": {"line-color": ["get", "route_color"], "line-opacity": 1, "line-width": 2.5}
-    },
-    {
       "id": "BUS",
       "type": "line",
       "source": "routes",
-      "source-layer": "trimet_routes",
+      "source-layer": "current_routes",
       "minzoom": 11,
       "filter": ["all", ["==", "route_type", 3]],
       "layout": {
@@ -565,7 +531,7 @@
       "id": "RAIL",
       "type": "line",
       "source": "routes",
-      "source-layer": "trimet_routes",
+      "source-layer": "current_routes",
       "filter": ["all", ["==", "route_type", 2]],
       "layout": {
         "visibility": "visible",
@@ -582,7 +548,7 @@
       "id": "SC",
       "type": "line",
       "source": "routes",
-      "source-layer": "trimet_routes",
+      "source-layer": "current_routes",
       "filter": ["in", "route_id", "193", "194", "195"],
       "layout": {
         "visibility": "visible",
@@ -597,9 +563,9 @@
       "id": "BRT",
       "type": "line",
       "source": "routes",
-      "source-layer": "trimet_routes",
+      "source-layer": "current_routes",
       "minzoom": 9,
-      "filter": ["in", "route_id", "2"],
+      "filter": ["in", "route_id", "2", "050", "051"],
       "layout": {
         "visibility": "visible",
         "line-cap": "round",
@@ -611,7 +577,7 @@
       "id": "MAX",
       "type": "line",
       "source": "routes",
-      "source-layer": "trimet_routes",
+      "source-layer": "current_routes",
       "filter": ["in", "route_id", "290", "200", "190", "90", "100"],
       "layout": {
         "visibility": "visible",
