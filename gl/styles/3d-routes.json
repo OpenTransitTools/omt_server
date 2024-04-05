@@ -12,7 +12,7 @@
       "type": "vector",
       "url": "mbtiles://or-wa.mbtiles"
     },
-    "routes": {
+    "routes_n_stops": {
       "type": "vector",
       "scheme": "tms",
       "tiles": [
@@ -510,7 +510,7 @@
     {
       "id": "transit_bus",
       "type": "line",
-      "source": "routes",
+      "source": "routes_n_stops",
       "source-layer": "current_routes",
       "minzoom": 11,
       "filter": ["all", ["==", "route_type", 3]],
@@ -530,7 +530,7 @@
     {
       "id": "transit_rail",
       "type": "line",
-      "source": "routes",
+      "source": "routes_n_stops",
       "source-layer": "current_routes",
       "filter": ["all", ["==", "route_type", 2]],
       "layout": {
@@ -547,7 +547,7 @@
     {
       "id": "transit_sc",
       "type": "line",
-      "source": "routes",
+      "source": "routes_n_stops",
       "source-layer": "current_routes",
       "filter": ["in", "route_id", "193", "194", "195"],
       "layout": {
@@ -562,7 +562,7 @@
     {
       "id": "transit_brt",
       "type": "line",
-      "source": "routes",
+      "source": "routes_n_stops",
       "source-layer": "current_routes",
       "minzoom": 9,
       "filter": ["in", "route_id", "2", "050", "051"],
@@ -576,7 +576,7 @@
     {
       "id": "transit_max",
       "type": "line",
-      "source": "routes",
+      "source": "routes_n_stops",
       "source-layer": "current_routes",
       "filter": ["in", "route_id", "290", "200", "190", "90", "100"],
       "layout": {
@@ -585,6 +585,12 @@
         "line-join": "round"
       },
       "paint": {"line-color": ["get", "route_color"], "line-opacity": 0.8, "line-width": 3.5}
+    },
+    {
+      "id": "transit_stops",
+      "type": "circle",
+      "source": "routes_n_stops",
+      "source-layer": "current_stops"
     },
     {
       "id": "road_major_label",
