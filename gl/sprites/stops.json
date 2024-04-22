@@ -1,0 +1,72 @@
+{
+  "default": {
+    "height": 30,
+    "pixelRatio": 1,
+    "width": 14,
+    "x": 0,
+    "y": 450
+  },
+  "stop-clackcoconnects": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 0,
+    "y": 0
+  },
+  "stop-ctran": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 0,
+    "y": 150
+  },
+  "stop-multnomahcounty": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 0,
+    "y": 300
+  },
+  "stop-portlandstreetcar": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 110,
+    "y": 0
+  },
+  "stop-rideconnection": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 110,
+    "y": 150
+  },
+  "stop-sandyareametro": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 110,
+    "y": 300
+  },
+  "stop-smart": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 220,
+    "y": 0
+  },
+  "stop-trimet": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 330,
+    "y": 0
+  },
+  "stop-washingtonpark": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 220,
+    "y": 150
+  }
+}
