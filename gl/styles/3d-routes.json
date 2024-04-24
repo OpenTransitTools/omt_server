@@ -625,7 +625,6 @@
       "layout": {
         "icon-image": [
           "coalesce",
-          ["get", "agency_id"],
           ["get", "feed_id"],
           "default"
         ],
