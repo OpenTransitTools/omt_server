@@ -588,32 +588,6 @@
       "paint": {"line-color": ["get", "route_color"], "line-opacity": 0.8, "line-width": 3.5}
     },
     {
-      "id": "transit_stops_simple",
-      "type": "circle",
-      "maxzoom": 15,
-      "source": "routes_n_stops",
-      "source-layer": "current_stops"
-    },
-    {
-      "id": "transit_stops_detail",
-      "type": "symbol",
-      "minzoom": 15,
-      "source": "routes_n_stops",
-      "source-layer": "current_stops",
-      "layout": {
-        "text-field": ["get", "stop_idx"],
-        "icon-image": [
-          "coalesce",
-          ["get", "stop_id"],
-          "default"
-        ],
-        "icon-size": 0.15
-      },
-      "paint": {
-        "icon-opacity": 0.7
-      }
-    },
-    {
       "id": "road_major_label",
       "type": "symbol",
       "source": "openmaptiles",
@@ -632,6 +606,38 @@
         "text-color": "#000",
         "text-halo-color": "hsl(0, 0%, 100%)",
         "text-halo-width": 2
+      }
+    },
+    {
+      "id": "transit_stop_circles",
+      "type": "circle",
+      "source": "routes_n_stops",
+      "source-layer": "current_stops",
+      "paint": {
+        "circle-opacity": 0.05
+      }
+    },
+    {
+      "id": "transit_stop_icons",
+      "type": "symbol",
+      "source": "routes_n_stops",
+      "source-layer": "current_stops",
+      "layout": {
+        "icon-image": [
+          "coalesce",
+          ["get", "agency_id"],
+          ["get", "feed_id"],
+          "default"
+        ],
+        "icon-size": [
+          "interpolate", ["linear"], ["zoom"],
+          14, 0.10,
+          17, 0.25
+        ],
+        "icon-offset": [0, -50]
+      },
+      "paint": {
+        "icon-opacity": 0.7
       }
     },
     {

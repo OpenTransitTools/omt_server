@@ -6,7 +6,7 @@
     "x": 0,
     "y": 450
   },
-  "stop-clackcoconnects": {
+  "CLACKAMAS": {
     "height": 150,
     "pixelRatio": 1,
     "width": 110,
@@ -20,42 +20,35 @@
     "x": 0,
     "y": 150
   },
-  "6211": {
-    "height": 150,
-    "pixelRatio": 1,
-    "width": 110,
-    "x": 0,
-    "y": 150
-  },
-  "stop-multnomahcounty": {
+  "SWAN": {
     "height": 150,
     "pixelRatio": 1,
     "width": 110,
     "x": 0,
     "y": 300
   },
-  "stop-portlandstreetcar": {
+  "PSC": {
     "height": 150,
     "pixelRatio": 1,
     "width": 110,
     "x": 110,
     "y": 0
   },
-  "stop-rideconnection": {
+  "RIDECONNECTION": {
     "height": 150,
     "pixelRatio": 1,
     "width": 110,
     "x": 110,
     "y": 150
   },
-  "stop-sandyareametro": {
+  "SAM": {
     "height": 150,
     "pixelRatio": 1,
     "width": 110,
     "x": 110,
     "y": 300
   },
-  "stop-smart": {
+  "SMART": {
     "height": 150,
     "pixelRatio": 1,
     "width": 110,
@@ -69,14 +62,7 @@
     "x": 330,
     "y": 0
   },
-  "7767": {
-    "height": 150,
-    "pixelRatio": 1,
-    "width": 110,
-    "x": 330,
-    "y": 0
-  },
-  "stop-washingtonpark": {
+  "WAPARK": {
     "height": 150,
     "pixelRatio": 1,
     "width": 110,
