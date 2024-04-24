@@ -590,19 +590,24 @@
     {
       "id": "transit_stops_simple",
       "type": "circle",
-      "maxzoom": 16,
+      "maxzoom": 15,
       "source": "routes_n_stops",
       "source-layer": "current_stops"
     },
     {
       "id": "transit_stops_detail",
       "type": "symbol",
-      "minzoom": 16,
+      "minzoom": 15,
       "source": "routes_n_stops",
       "source-layer": "current_stops",
       "layout": {
-        "icon-image": {"base": 1, "stops": [[0, "default"], [20, ""]]},
-        "icon-size": 1.0
+        "text-field": ["get", "stop_idx"],
+        "icon-image": [
+          "coalesce",
+          ["get", "stop_id"],
+          "default"
+        ],
+        "icon-size": 0.15
       },
       "paint": {
         "icon-opacity": 0.7

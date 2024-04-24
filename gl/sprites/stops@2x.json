@@ -13,7 +13,7 @@
     "x": 0,
     "y": 0
   },
-  "stop-ctran": {
+  "CTRAN": {
     "height": 300,
     "pixelRatio": 2,
     "width": 220,
@@ -55,7 +55,14 @@
     "x": 440,
     "y": 0
   },
-  "stop-trimet": {
+  "TRIMET": {
+    "height": 300,
+    "pixelRatio": 2,
+    "width": 220,
+    "x": 660,
+    "y": 0
+  },
+  "7767": {
     "height": 300,
     "pixelRatio": 2,
     "width": 220,
