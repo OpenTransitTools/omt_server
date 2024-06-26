@@ -16,7 +16,7 @@
       "type": "vector",
       "scheme": "tms",
       "tiles": [
-        "https://ws-dv.trimet.org/geoserver/gwc/service/tms/1.0.0/ott:current@EPSG:900913@pbf/{z}/{x}/{y}.pbf"
+        "https://ws-st.trimet.org/geoserver/gwc/service/tms/1.0.0/ott:current@EPSG:900913@pbf/{z}/{x}/{y}.pbf"
       ]
     }
   },
@@ -525,7 +525,7 @@
       "source-layer": "current_flex",
       "paint": {
         "line-color": ["get", "region_color"],
-        "line-width": 3.0
+        "line-width": 2.3
       }
     },
     {

@@ -14,11 +14,11 @@
       "type": "vector",
       "url": "mbtiles://or-wa.mbtiles"
     },
-    "routes": {
+    "transit_layers": {
       "type": "vector",
       "scheme": "tms",
       "tiles": [
-        "https://ws-st.trimet.org/geoserver/gwc/service/tms/1.0.0/ott:current_routes_n_stops@EPSG:900913@pbf/{z}/{x}/{y}.pbf"
+        "https://ws-st.trimet.org/geoserver/gwc/service/tms/1.0.0/ott:current@EPSG:900913@pbf/{z}/{x}/{y}.pbf"
       ]
     }
   },
@@ -575,9 +575,29 @@
       }
     },
     {
+      "id": "transit_flex_fill",
+      "type": "fill",
+      "source": "transit_layers",
+      "source-layer": "current_flex",
+      "paint": {
+        "fill-color": ["get", "region_color"],
+        "fill-opacity": 0.6
+      }
+    },
+    {
+      "id": "transit_flex_outline",
+      "type": "line",
+      "source": "transit_layers",
+      "source-layer": "current_flex",
+      "paint": {
+        "line-color": ["get", "region_color"],
+        "line-width": 2.3
+      }
+    },
+    {
       "id": "transit_bus",
       "type": "line",
-      "source": "routes",
+      "source": "transit_layers",
       "source-layer": "current_routes",
       "minzoom": 11,
       "filter": ["all", ["==", "route_type", 3]],
@@ -597,7 +617,7 @@
     {
       "id": "transit_rail",
       "type": "line",
-      "source": "routes",
+      "source": "transit_layers",
       "source-layer": "current_routes",
       "filter": ["all", ["==", "route_type", 2]],
       "layout": {
@@ -614,9 +634,13 @@
     {
       "id": "transit_sc",
       "type": "line",
-      "source": "routes",
+      "source": "transit_layers",
       "source-layer": "current_routes",
-      "filter": ["in", "route_id", "193", "194", "195"],
+      "filter": [
+        "all",
+        ["in", "route_id", "193", "194", "195"],
+        ["==", "route_type", 0]
+      ],
       "layout": {
         "visibility": "visible",
         "line-cap": "round",
@@ -629,7 +653,7 @@
     {
       "id": "transit_brt",
       "type": "line",
-      "source": "routes",
+      "source": "transit_layers",
       "source-layer": "current_routes",
       "minzoom": 9,
       "filter": ["in", "route_id", "2", "050", "051"],
@@ -643,9 +667,13 @@
     {
       "id": "transit_max",
       "type": "line",
-      "source": "routes",
+      "source": "transit_layers",
       "source-layer": "current_routes",
-      "filter": ["in", "route_id", "290", "200", "190", "90", "100"],
+      "filter": [
+        "all",
+        ["in", "route_id", "290", "200", "190", "90", "100"],
+        ["==", "route_type", 0]
+      ],
       "layout": {
         "visibility": "visible",
         "line-cap": "round",
