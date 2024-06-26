@@ -512,7 +512,7 @@
       "id": "transit_flex_fill",
       "type": "fill",
       "source": "transit_layers",
-      "source-layer": "flex",
+      "source-layer": "current_flex",
       "paint": {
         "fill-color": ["get", "region_color"],
         "fill-opacity": 0.6
@@ -522,10 +522,10 @@
       "id": "transit_flex_outline",
       "type": "line",
       "source": "transit_layers",
-      "source-layer": "flex",
+      "source-layer": "current_flex",
       "paint": {
         "line-color": ["get", "region_color"],
-        "line-dasharray": [0.5, 1]
+        "line-width": 3.0
       }
     },
     {
