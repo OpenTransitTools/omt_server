@@ -1,0 +1,72 @@
+{
+  "default": {
+    "height": 30,
+    "pixelRatio": 1,
+    "width": 14,
+    "x": 0,
+    "y": 450
+  },
+  "CLACKAMAS": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 0,
+    "y": 0
+  },
+  "CTRAN": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 0,
+    "y": 150
+  },
+  "SWAN": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 0,
+    "y": 300
+  },
+  "PSC": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 110,
+    "y": 0
+  },
+  "RIDECONNECTION": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 110,
+    "y": 150
+  },
+  "SAM": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 110,
+    "y": 300
+  },
+  "SMART": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 220,
+    "y": 0
+  },
+  "TRIMET": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 330,
+    "y": 0
+  },
+  "WAPARK": {
+    "height": 150,
+    "pixelRatio": 1,
+    "width": 110,
+    "x": 220,
+    "y": 150
+  }
+}
