@@ -12,7 +12,7 @@
 #  echoing the raw sever name will identify what servers are running in production.
 #
 DIR=`dirname $0`
-GL_DIR=$DIR/../gl
+GL_DIR=$DIR/..
 
 SVR_NAME=server.txt
 SVR_FILE=$GL_DIR/$SVR_NAME
