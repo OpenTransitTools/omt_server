@@ -19,12 +19,8 @@ function update_osm_data() {
   fi
 
   # step 1: move old OSM data aside
-  old_osm_dir="$OMT_DIR/old/"
-  rm -rf $old_osm_dir
-  mkdir -p $old_osm_dir
-  mv $OMT_DATA_DIR/$OSM_META_FILE $old_osm_dir
-  mv $OMT_DATA_DIR/$OSM_FILE $old_osm_dir
-  mv $OMT_DATA_DIR/*mbtiles $old_osm_dir
+  mv $OMT_DATA_DIR/$OSM_META_FILE /tmp/
+  mv $OMT_DATA_DIR/$OSM_FILE /tmp/ 
 
   # step 2: grab new data
   curl $OSM_META_URL > $OMT_DATA_DIR/$OSM_META_FILE
@@ -37,6 +33,9 @@ function update_osm_data() {
     echo "$OMT_DATA_DIR/$OSM_FILE is wayyy too small at $size"
     exit
   fi
+
+  # step 4: mv old tiles db out of the way before rebuild (won't move on small osm exit above)
+  mv $OMT_DATA_DIR/*mbtiles /tmp/
 }
 
 # main: update data
@@ -51,8 +50,8 @@ rm -rf ./cache
 check_osm_meta_data
 new=$?
 if [ $new == 1 ]; then
-  echo "step A: blow away existing GL / OMT Docker and data"
-  $LDIR/nuke.sh NALL
+  #echo "step A: blow away existing GL / OMT Docker and data"
+  # $LDIR/nuke.sh NALL 
 
   NOW=$( date '+%F @ %H:%M:%S' ) 
   echo "step B: load and create *.mbtiles in openmaptiles/data dir ($NOW)"
