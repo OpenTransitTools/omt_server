@@ -21,6 +21,7 @@ function update_osm_data() {
   # step 1: move old OSM data aside
   mv $OMT_DATA_DIR/$OSM_META_FILE /tmp/
   mv $OMT_DATA_DIR/$OSM_FILE /tmp/ 
+  mv $OMT_DATA_DIR/*mbtiles /tmp/
 
   # step 2: grab new data
   curl $OSM_META_URL > $OMT_DATA_DIR/$OSM_META_FILE
@@ -33,25 +34,22 @@ function update_osm_data() {
     echo "$OMT_DATA_DIR/$OSM_FILE is wayyy too small at $size"
     exit
   fi
-
-  # step 4: mv old tiles db out of the way before rebuild (won't move on small osm exit above)
-  mv $OMT_DATA_DIR/*mbtiles /tmp/
 }
 
 # main: update data
 NOW=$( date '+%F @ %H:%M:%S' ) 
 echo "tile reload is starting ($NOW)" 
-rm -rf /tmp/*
 
 cd $OMT_DIR
-rm -rf ./cache
-./scripts/git_update.sh
-
 check_osm_meta_data
 new=$?
 if [ $new == 1 ]; then
-  #echo "step A: blow away existing GL / OMT Docker and data"
-  # $LDIR/nuke.sh NALL 
+  echo "step A: blow away existing GL / OMT Docker and data, including build + cache dirs"
+  # $LDIR/nuke.sh NALL - will shut down other running containers, ala geoserver
+  cd $OMT_DIR
+  docker-compose down
+  rm -rf /tmp/*
+  rm -rf ./build ./cache
 
   NOW=$( date '+%F @ %H:%M:%S' ) 
   echo "step B: load and create *.mbtiles in openmaptiles/data dir ($NOW)"
@@ -59,12 +57,13 @@ if [ $new == 1 ]; then
 
   NOW=$( date '+%F @ %H:%M:%S' ) 
   echo "step C: build new *mbtiles file $($NOW)"
-  echo build 
+  cd $OMT_DIR
+  quickstart.sh or-wa
 
   NOW=$( date '+%F @ %H:%M:%S' ) 
   echo "step D: restart tileserver-gl and test some URLs ($NOW)"
   cd $OMT_DIR
- 
+  ./scripts/
 
   echo "step D: test... ($NOW)"
   cd $OMT_DIR
