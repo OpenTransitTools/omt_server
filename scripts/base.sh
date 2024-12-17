@@ -3,7 +3,6 @@ DIR=`dirname $0`
 # variables that can changed based on install
 MIN_FILE_SIZE=${MIN_FILE_SIZE:=10000000}
 MBTILES_FILE=${MBTILES_FILE:="or-wa.mbtiles"}
-OMT_DIR=${OMT_DIR:="$HOME/omt_server"}
 
 OSM_SERVER=${OSM_SERVER:="http://maps6.trimet.org"}
 
@@ -15,10 +14,8 @@ OSM_DATA_URL="$OSM_SERVER/pelias/$OSM_FILE"
 
 
 # openmaptiles (build area) mbtiles 
-OMT_DATA_DIR="$OMT_DIR/openmaptiles/data"
-OMT_MBTILES_PATH="$OMT_DATA_DIR/tiles.mbtiles"
-
-# gl mbtiles paths
+OMT_DIR=${OMT_DIR:="$HOME/omt_server"}
+OMT_DATA_DIR="$OMT_DIR/data"
 GL_DATA_DIR="$OMT_DIR/data"
 GL_DATA_BKUP_DIR="$GL_DATA_DIR/data-bkup"
 GL_MBTILES_PATH="$GL_DATA_DIR/$MBTILES_FILE"
