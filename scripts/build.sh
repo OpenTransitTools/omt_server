@@ -1,3 +1,6 @@
+THIS ISN"T WORKING ... 
+WOULD BE GREQT TO REPLACE Makefile and quickstart.sh with thsi tho...
+
 POSTGIS_IMAGE=openmaptiles/postgis-preloaded \
  docker-compose pull --ignore-pull-failures --quiet openmaptiles-tools generate-vectortiles postgres
 
