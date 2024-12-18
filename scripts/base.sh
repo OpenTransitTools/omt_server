@@ -5,6 +5,7 @@ MIN_FILE_SIZE=${MIN_FILE_SIZE:=10000000}
 MBTILES_FILE=${MBTILES_FILE:="or-wa.mbtiles"}
 
 OSM_SERVER=${OSM_SERVER:="http://maps6.trimet.org"}
+DEF_MACHINE=rj-dv-mapapp01
 
 OSM_PBF_SIZE=$MIN_FILE_SIZE
 OSM_META_FILE="or-wa.osm-stats"
@@ -37,6 +38,7 @@ function curl_test() {
   else
     echo "/tmp/$2 seems SMALL at $size" 
   fi
+  return $size
 }
 
 
@@ -71,6 +73,5 @@ function check_osm_meta_data() {
     fi
     rm -rf $tmp_dir
   fi
-
   return $ret_val
 }

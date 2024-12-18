@@ -1,0 +1,1 @@
+/srv/tileserver-gl/server-config/chat_bot.sh

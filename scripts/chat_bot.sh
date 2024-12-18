@@ -1,1 +1,0 @@
-../../server-config/chat_bot.sh

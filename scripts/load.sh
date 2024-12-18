@@ -61,11 +61,12 @@ if [ $new == 1 ]; then
   quickstart.sh or-wa
 
   NOW=$( date '+%F @ %H:%M:%S' ) 
-  echo "step D: restart tileserver-gl and test some URLs ($NOW)"
+  echo "step D: restart tileserver-gl and test some URLs ($NOW) ... will sleep for 30"
   cd $OMT_DIR
   ./scripts/
+  sleep 30
 
-  echo "step D: test... ($NOW)"
+  echo "step E: test... ($NOW)"
   cd $OMT_DIR
   ./scripts/test_gl_images.sh
 fi
