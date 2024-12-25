@@ -40,7 +40,6 @@ function update_osm_data() {
 NOW=$( date '+%F @ %H:%M:%S' ) 
 echo "tile reload is starting ($NOW)" 
 
-cd $OMT_DIR
 check_osm_meta_data
 new=$?
 if [ $new == 1 ]; then
@@ -49,7 +48,7 @@ if [ $new == 1 ]; then
   cd $OMT_DIR
   docker-compose down
   rm -rf /tmp/*
-  rm -rf ./build ./cache
+  rm -rf $OMT_DIR/build $OMT_DIR/cache
 
   NOW=$( date '+%F @ %H:%M:%S' ) 
   echo "step B: load and create *.mbtiles in openmaptiles/data dir ($NOW)"
@@ -57,18 +56,17 @@ if [ $new == 1 ]; then
 
   NOW=$( date '+%F @ %H:%M:%S' ) 
   echo "step C: build new *mbtiles file $($NOW)"
-  cd $OMT_DIR
   quickstart.sh or-wa
 
   NOW=$( date '+%F @ %H:%M:%S' ) 
-  echo "step D: restart tileserver-gl and test some URLs ($NOW) ... will sleep for 30"
-  cd $OMT_DIR
-  ./scripts/
-  sleep 30
+  NSECS=60
+  echo "step D: restart tileserver-gl and test some URLs ($NOW) ... will sleep for $NSECS"
+  $OMT_DIR/scripts/start_gl_nohup.sh
+  sleep $NSECS
 
   echo "step E: test... ($NOW)"
-  cd $OMT_DIR
-  ./scripts/test_gl_images.sh
+  $OMT_DIR/scripts/test_gl_images.sh
+  cd -
 fi
 
 NOW=$( date '+%F @ %H:%M:%S' ) 

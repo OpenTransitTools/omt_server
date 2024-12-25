@@ -1,4 +1,4 @@
-DIR=`dirname $0`
+BDIR=`dirname $0`
 
 # variables that can changed based on install
 MIN_FILE_SIZE=${MIN_FILE_SIZE:=10000000}
