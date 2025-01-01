@@ -13,14 +13,16 @@ function bkup_mbtiles() {
 
 
 function scp_mbtiles() {
-  cmd="scp -r $GL_DATA_DIR $1:$GL_DATA_DIR"
+  cmd="scp -r $GL_DATA_DIR/* $1:$GL_DATA_DIR/"
   echo $cmd
   eval $cmd
 }
 
 
 function restart_gl() {
-  echo restart GL $1
+  cmd="ssh $1 $OMT_DIR/scripts/start_gl_nohup.sh"
+  echo $cmd
+  eval $cmd
 }
 
 
