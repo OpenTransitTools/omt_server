@@ -20,7 +20,6 @@ function count_fails() {
   then
     fails=-1
   fi
-  fails=111
   return $fails
 }
 

@@ -26,19 +26,26 @@ MBTILES_PATH=$GL_MBTILES_PATH
 ## curl a couple of image files from gl, and them check their size
 ##
 function curl_test() {
-  rm -f /tmp/$2
-  cmd="curl $1 > /tmp/$2"
+  url=$1
+  name=$2
+  min_size=${3:-300000}
+  tmp="/tmp/$name"
+
+  rm -f $tmp
+  cmd="curl $url > $tmp"
   echo $cmd
   eval $cmd > /dev/null 2>&1
 
-  size=`ls -ltr /tmp/$2 | awk -F" " '{ print $5 }'`
-  if [[ $size -gt 300000 ]]
+  size=`ls -ltr $tmp | awk -F" " '{ print $5 }'`
+  if [[ $size -gt $min_size ]]
   then
-    echo "/tmp/$2 looks GOOD at size $size"
+    echo "$tmp looks GOOD at size $size"
+    ret_val=1
   else
-    echo "/tmp/$2 seems SMALL at $size" 
+    echo "$tmp seems SMALL at $size"
+    ret_val=0
   fi
-  return $size
+  return $ret_val
 }
 
 

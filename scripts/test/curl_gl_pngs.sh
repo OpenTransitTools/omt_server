@@ -12,5 +12,11 @@ TM_SAT_URL="http://$MACHINE:8080/styles/trimet-satellite/16/10435/23440@6x.png"
 
 # step 2: call tests
 echo "testing GL on $MACHINE"
-curl_test $TM_MAP_URL $MACHINE-map.png
-curl_test $TM_SAT_URL $MACHINE-sat.png
+curl_test $TM_MAP_URL $MACHINE-map.png; map=$?
+curl_test $TM_SAT_URL $MACHINE-sat.png; sat=$?
+
+if [ $map == 1 ] && [ $sat == 1 ]; then
+  exit 1
+else
+  exit 0
+fi
