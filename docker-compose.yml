@@ -135,6 +135,7 @@ services:
       - "${TPORT:-8080}"
       - --config
       - "/style/config.json"
+    restart: always
     ports:
       - "${TPORT:-8080}:${TPORT:-8080}"
     volumes:
