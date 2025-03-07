@@ -2,7 +2,7 @@ STDIR=`dirname $0`
 
 cd $STDIR/../
 
-PRUNE=${1:-"YES"}
+PRUNE=${1:-"NO"}
 
 
 # take down OMT
