@@ -129,7 +129,7 @@ services:
       - "8088:8888"
 
   tileserver-gl:
-    image: "maptiler/tileserver-gl:latest"
+    image: "maptiler/tileserver-gl:v5.1.3"
     command:
       - --port
       - "${TPORT:-8080}"
