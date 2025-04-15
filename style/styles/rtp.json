@@ -579,9 +579,13 @@
       "type": "fill",
       "source": "transit_layers",
       "source-layer": "current_flex",
+      "layout": {
+        "visibility": "visible",
+        "fill-sort-key": ["get", "render_order"]
+      },
       "paint": {
         "fill-color": ["get", "region_color"],
-        "fill-opacity": 0.6
+        "fill-opacity": 0.45
       }
     },
     {
@@ -589,9 +593,14 @@
       "type": "line",
       "source": "transit_layers",
       "source-layer": "current_flex",
+      "layout": {
+        "visibility": "visible",
+        "line-sort-key": ["get", "render_order"]
+      },
       "paint": {
         "line-color": ["get", "region_color"],
-        "line-width": 2.3
+        "line-width": 2.3,
+        "line-opacity": 0.85
       }
     },
     {
