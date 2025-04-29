@@ -7,8 +7,8 @@ CDIR=`dirname $0`
 MACHINE=${1:-$DEF_MACHINE}
 
 # step 1: create urls to machine specific version of GL
-TM_MAP_URL="http://$MACHINE:8080/styles/trimet/13/1304/2930@6x.png"
-TM_SAT_URL="http://$MACHINE:8080/styles/trimet-satellite/16/10435/23440@6x.png"
+TM_MAP_URL="http://$MACHINE:8080/styles/trimet/13/1304/2930@4x.png"
+TM_SAT_URL="http://$MACHINE:8080/styles/trimet-satellite/16/10435/23440@4x.png"
 
 # step 2: call tests
 echo "testing GL on $MACHINE"
