@@ -1,7 +1,6 @@
 {
   "version": 8,
   "name": "TriMet Satellite",
-  "id": "tm-satellite",
   "metadata": {
     "mapbox:autocomposite": false,
     "mapbox:type": "template",

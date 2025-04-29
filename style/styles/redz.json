@@ -1,7 +1,6 @@
 {
   "version": 8,
-  "name": "OSM OMT",
-  "id": "redz",
+  "name": "OSM OMT (REDZ)",
   "sources": {
     "openmaptiles": {
       "type": "vector",

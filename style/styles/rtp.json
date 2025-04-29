@@ -1,7 +1,6 @@
 {
   "version": 8,
   "name": "RTP",
-  "id": "rtp",
   "metadata": {
     "mapbox:autocomposite": false,
     "mapbox:type": "template",
@@ -18,7 +17,7 @@
       "type": "vector",
       "scheme": "tms",
       "tiles": [
-        "https://ws-st.trimet.org/geoserver/gwc/service/tms/1.0.0/ott:current@EPSG:900913@pbf/{z}/{x}/{y}.pbf"
+        "https://ws.trimet.org/geoserver/gwc/service/tms/1.0.0/ott:current@EPSG:900913@pbf/{z}/{x}/{y}.pbf"
       ]
     }
   },

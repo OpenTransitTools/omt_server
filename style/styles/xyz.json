@@ -1,7 +1,6 @@
 {
   "version": 8,
   "name": "XYZ Satellite layer (TriMet hybrid xyz tiles)",
-  "id": "xyz",
   "metadata": {
     "mapbox:autocomposite": false,
     "maputnik:renderer": "mbgljs",

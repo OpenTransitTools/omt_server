@@ -1,7 +1,6 @@
 {
   "version": 8,
   "name": "TriMet + Routes Satellite",
-  "id": "tm-satellite-routes",
   "metadata": {
     "mapbox:autocomposite": false,
     "mapbox:type": "template",
@@ -16,7 +15,7 @@
     },
     "routes": {
       "type": "geojson",
-      "data": "https://ws-st.trimet.org/geoserver/wfs?srsName=EPSG:4326&service=WFS&version=1.0&request=GetFeature&typeName=ott%3Atrimet_routes&outputFormat=json"
+      "data": "https://ws.trimet.org/geoserver/wfs?srsName=EPSG:4326&service=WFS&version=1.0&request=GetFeature&typeName=ott%3Atrimet_routes&outputFormat=json"
     },
     "tm-imagery": {
       "type": "raster",

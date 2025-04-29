@@ -1,7 +1,6 @@
 {
   "version": 8,
   "name": "WMS Satellite layer (Oregon 2018)",
-  "id": "wms",
   "metadata": {
     "mapbox:autocomposite": false,
     "maputnik:renderer": "mbgljs",
@@ -15,7 +14,7 @@
     "or-imagery": {
       "type": "raster",
       "tiles": [
-        "https://imagery.oregonexplorer.info/arcgis/services/OSIP_2018/OSIP_2018_WM/ImageServer/WMSServer?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.0&request=GetMap&srs=EPSG:3857&width=256&height=256&layers=0"
+        "https://imagery.oregonexplorer.info/arcgis/services/OSIP_2022/OSIP_2022_WM/ImageServer/WMSServer?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.0&request=GetMap&srs=EPSG:3857&width=256&height=256&layers=0"
       ],
       "tileSize": 256
     }
