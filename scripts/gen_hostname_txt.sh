@@ -12,11 +12,11 @@
 #  echoing the raw sever name will identify what servers are running in production.
 #
 DIR=`dirname $0`
-GL_DIR=$DIR/../gl
+OMT_DIR=$DIR/..
 
 SVR_NAME=server.txt
-SVR_FILE=$GL_DIR/$SVR_NAME
-CFG_FILE=$GL_DIR/config.json
+SVR_FILE=$OMT_DIR/$SVR_NAME
+CFG_FILE=$OMT_DIR/config.json
 
 # step 1: output $HOSTNAME into the server.txt file
 echo $HOSTNAME > $SVR_FILE

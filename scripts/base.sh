@@ -1,11 +1,11 @@
-DIR=`dirname $0`
+BDIR=`dirname $0`
 
 # variables that can changed based on install
 MIN_FILE_SIZE=${MIN_FILE_SIZE:=10000000}
 MBTILES_FILE=${MBTILES_FILE:="or-wa.mbtiles"}
-OMT_DIR=${OMT_DIR:="$HOME/omt_server"}
 
 OSM_SERVER=${OSM_SERVER:="http://maps6.trimet.org"}
+DEF_MACHINE=rj-dv-mapapp01
 
 OSM_PBF_SIZE=$MIN_FILE_SIZE
 OSM_META_FILE="or-wa.osm-stats"
@@ -15,13 +15,10 @@ OSM_DATA_URL="$OSM_SERVER/pelias/$OSM_FILE"
 
 
 # openmaptiles (build area) mbtiles 
-OMT_DATA_DIR="$OMT_DIR/openmaptiles/data"
-OMT_MBTILES_PATH="$OMT_DATA_DIR/tiles.mbtiles"
-
-# gl mbtiles paths
-GL_DIR="$OMT_DIR/gl"
-GL_DATA_DIR="$GL_DIR/data"
-GL_DATA_BKUP_DIR="$GL_DIR/data-bkup"
+OMT_DIR=${OMT_DIR:="$HOME/omt_server"}
+OMT_DATA_DIR="$OMT_DIR/data"
+GL_DATA_DIR="$OMT_DIR/data"
+GL_DATA_BKUP_DIR="$GL_DATA_DIR/data-bkup"
 GL_MBTILES_PATH="$GL_DATA_DIR/$MBTILES_FILE"
 MBTILES_PATH=$GL_MBTILES_PATH
 
@@ -29,18 +26,26 @@ MBTILES_PATH=$GL_MBTILES_PATH
 ## curl a couple of image files from gl, and them check their size
 ##
 function curl_test() {
-  rm -f /tmp/$2
-  cmd="curl $1 > /tmp/$2"
+  url=$1
+  name=$2
+  min_size=${3:-300000}
+  tmp="/tmp/$name"
+
+  rm -f $tmp
+  cmd="curl $url > $tmp"
   echo $cmd
   eval $cmd > /dev/null 2>&1
 
-  size=`ls -ltr /tmp/$2 | awk -F" " '{ print $5 }'`
-  if [[ $size -gt 300000 ]]
+  size=`ls -ltr $tmp | awk -F" " '{ print $5 }'`
+  if [[ $size -gt $min_size ]]
   then
-    echo "/tmp/$2 looks GOOD at size $size"
+    echo "$tmp looks GOOD at size $size"
+    ret_val=1
   else
-    echo "/tmp/$2 seems SMALL at $size" 
+    echo "$tmp seems SMALL at $size"
+    ret_val=0
   fi
+  return $ret_val
 }
 
 
@@ -75,6 +80,5 @@ function check_osm_meta_data() {
     fi
     rm -rf $tmp_dir
   fi
-
   return $ret_val
 }

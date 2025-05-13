@@ -1,8 +1,7 @@
 DIR=`dirname $0`
 . $DIR/../base.sh
 
-size=`ls -ltr $GL_MBTILES_PATH | awk -F" " '{ print $5 }'`
-if [[ $size -gt $MIN_FILE_SIZE ]]
+if [ -d $GL_DATA_DIR ]
 then
   echo "BKUP"
   rm -rf $GL_DATA_BKUP_DIR

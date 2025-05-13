@@ -7,26 +7,21 @@
 #   - download new OSM data 
 #   - call import.sh  -- sub-process to rebuild *.mbtiles here in test, and validate that it's good
 #
-DIR=`dirname $0`
-. $DIR/base.sh
+LDIR=`dirname $0`
+. $LDIR/base.sh
 
 
 function update_osm_data() {
 
-  # step 1: move old OSM data aside
+  # step 0: make sure we have a data dir
   if [ ! -d $OMT_DATA_DIR ]; then
     mkdir -p $OMT_DATA_DIR
-  else
-    old_osm_dir="$OMT_DIR/old/"
-
-    rm -rf /tmp/old
-    mv $old_osm_dir /tmp/
-    rm -rf $old_osm_dir
-    mkdir -p $old_osm_dir
-    mv $OMT_DATA_DIR/$OSM_META_FILE $old_osm_dir
-    mv $OMT_DATA_DIR/$OSM_FILE $old_osm_dir
-    mv $OMT_DATA_DIR/*mbtiles $old_osm_dir
   fi
+
+  # step 1: move old OSM data aside
+  mv $OMT_DATA_DIR/$OSM_META_FILE /tmp/
+  mv $OMT_DATA_DIR/$OSM_FILE /tmp/ 
+  mv $OMT_DATA_DIR/*mbtiles /tmp/
 
   # step 2: grab new data
   curl $OSM_META_URL > $OMT_DATA_DIR/$OSM_META_FILE
@@ -44,35 +39,34 @@ function update_osm_data() {
 # main: update data
 NOW=$( date '+%F @ %H:%M:%S' ) 
 echo "tile reload is starting ($NOW)" 
-rm -rf /tmp/*
-
-cd $OMT_DIR
-rm -rf ./cache
-./scripts/git_update.sh
 
 check_osm_meta_data
 new=$?
 if [ $new == 1 ]; then
-  echo "step A: blow away existing GL / OMT Docker and data"
-  $DIR/nuke.sh ALL
+  echo "step A: blow away existing GL / OMT Docker and data, including build + cache dirs"
+  # $LDIR/nuke.sh NALL - will shut down other running containers, ala geoserver
+  cd $OMT_DIR
+  docker-compose down
+  rm -rf /tmp/*
+  rm -rf $OMT_DIR/build $OMT_DIR/cache
 
   NOW=$( date '+%F @ %H:%M:%S' ) 
   echo "step B: load and create *.mbtiles in openmaptiles/data dir ($NOW)"
   update_osm_data
 
-  cd $OMT_DIR
-  ./scripts/import.sh
+  NOW=$( date '+%F @ %H:%M:%S' ) 
+  echo "step C: build new *mbtiles file $($NOW)"
+  quickstart.sh or-wa
 
   NOW=$( date '+%F @ %H:%M:%S' ) 
-  echo "step C: restart and test GL with this new *.mbtiles file ($NOW)"
-  cd $OMT_DIR
-  ./scripts/mbtiles/copy.sh
-  ./scripts/mbtiles/restart.sh
- 
-  NOW=$( date '+%F @ %H:%M:%S' ) 
-  echo "step D: test... ($NOW)"
-  cd $OMT_DIR
-  ./scripts/test_gl_images.sh
+  NSECS=60
+  echo "step D: restart tileserver-gl and test some URLs ($NOW) ... will sleep for $NSECS"
+  $OMT_DIR/scripts/start_gl_nohup.sh
+  sleep $NSECS
+
+  echo "step E: test... ($NOW)"
+  $OMT_DIR/scripts/test_gl_images.sh
+  cd -
 fi
 
 NOW=$( date '+%F @ %H:%M:%S' ) 
