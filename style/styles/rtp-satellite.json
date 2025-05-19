@@ -35,7 +35,8 @@
     {
       "id": "tm-aerials",
       "type": "raster",
-      "source": "tm-imagery"
+      "source": "tm-imagery",
+      "color": "#000000"
     },
     {
       "id": "road_path",
