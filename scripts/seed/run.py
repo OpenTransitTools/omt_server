@@ -75,19 +75,19 @@ def crazy_extent_calc(zoom, lat, lon, radius):
         if zoom <= 4:
             minlat, minlon, maxlat, maxlon = max_extent()
         elif zoom < 7:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 10.00)
-        elif zoom < 10:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 1.75)
-        elif zoom < 13:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.17)
-        elif zoom < 16:
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 3.00)
+        elif zoom < 9:
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.55)
+        elif zoom < 12:
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.10)
+        elif zoom < 14:
             minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.03)
-        elif zoom < 18:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.007)
+        elif zoom < 17:
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.0035)
         elif zoom < 20:
             minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.0005)
         elif zoom < 25:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.00005)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.00009)
     return minlat, minlon, maxlat, maxlon
 
 
@@ -105,8 +105,8 @@ def runner(args):
         url_count += len(urls)
         print("zoom level: {} = {} ({})".format(zoom, len(urls), urls[0]))
 
-    print("total urls: {} for zooms {]-{} and scale of {}".format(url_count, from_zoom, to_zoom, args.radius))
+    print("total urls: {} for zooms {}-{} and scale of {}".format(url_count, from_zoom, to_zoom, args.radius))
 
 if __name__ == "__main__":
-    args = get_cmdline_args()    
-    runner(args)
+    cmdline_args = get_cmdline_args()    
+    runner(cmdline_args)
