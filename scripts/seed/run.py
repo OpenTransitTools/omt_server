@@ -76,16 +76,16 @@ def crazy_extent_calc(zoom, lat, lon, radius):
             minlat, minlon, maxlat, maxlon = max_extent()
         elif zoom < 7:
             minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 3.00)
-        elif zoom < 9:
+        elif zoom <= 9:
             minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.55)
         elif zoom < 12:
             minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.10)
         elif zoom < 14:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.03)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.035)
         elif zoom < 17:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.0035)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.005)
         elif zoom < 20:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.0005)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.00055)
         elif zoom < 25:
             minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.00009)
     return minlat, minlon, maxlat, maxlon
