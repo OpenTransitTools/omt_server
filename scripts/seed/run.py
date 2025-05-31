@@ -67,27 +67,44 @@ def get_seed_urls(minlat, minlon, maxlat, maxlon, zoomlevel, url, style, retina,
             break
     return ret_val
 
+# multiplyer table for different zoom levels
+mult = [0] * 26
+mult[4]  = 4.35
+mult[5]  = 2.35
+mult[6]  = 1.0
+mult[7]  = 0.50
+mult[8]  = 0.3
+mult[9]  = 0.15
+mult[10] = 0.075
+mult[11] = 0.037
+mult[12] = 0.015
+mult[13] = 0.0095
+mult[14] = 0.005
+mult[15] = 0.0025
+mult[16] = 0.00115
+mult[17] = 0.00055
+mult[18] = 0.00025
+mult[19] = 0.00015
+mult[20] = 0.000065
+mult[21] = 0.00003609
+mult[22] = 0.0000175
+mult[23] = 0.000010
+mult[24] = 0.000005
+mult[25] = 0.0000025
+
 
 def crazy_extent_calc(zoom, lat, lon, radius):
-    minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon)
+    if radius > 10:
+        radius = 10
+    #print(zoom)
     # crazy logic to extend the lat lon bbox and not genereate too many tiles
-    if radius > 1:
-        if zoom <= 4:
+    if radius > 1 and zoom < len(mult):
+        if mult[zoom] == 0:
             minlat, minlon, maxlat, maxlon = max_extent()
-        elif zoom < 7:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 3.00)
-        elif zoom <= 9:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.55)
-        elif zoom < 12:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.10)
-        elif zoom < 14:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.035)
-        elif zoom < 17:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.005)
-        elif zoom < 20:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.00055)
-        elif zoom < 25:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.00009)
+        else:
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * mult[zoom])
+    else:
+        minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon)
     return minlat, minlon, maxlat, maxlon
 
 
