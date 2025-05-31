@@ -68,27 +68,26 @@ def get_seed_urls(minlat, minlon, maxlat, maxlon, zoomlevel, url, style, retina,
     return ret_val
 
 
-def crazy_extent_calc(zoom):
-    minlat, minlon, maxlat, maxlon = pt_2_bbox(args.lat, args.lon)
+def crazy_extent_calc(zoom, lat, lon, radius):
+    minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon)
     # crazy logic to extend the lat lon bbox and not genereate too many tiles
-    radius = args.radius
     if radius > 1:
         if zoom <= 4:
             minlat, minlon, maxlat, maxlon = max_extent()
         elif zoom < 7:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(args.lat, args.lon, radius * 10.00)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 10.00)
         elif zoom < 10:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(args.lat, args.lon, radius * 1.75)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 1.75)
         elif zoom < 13:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(args.lat, args.lon, radius * 0.17)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.17)
         elif zoom < 16:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(args.lat, args.lon, radius * 0.03)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.03)
         elif zoom < 18:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(args.lat, args.lon, radius * 0.007)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.007)
         elif zoom < 20:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(args.lat, args.lon, radius * 0.0005)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.0005)
         elif zoom < 25:
-            minlat, minlon, maxlat, maxlon = pt_2_bbox(args.lat, args.lon, radius * 0.00005)
+            minlat, minlon, maxlat, maxlon = pt_2_bbox(lat, lon, radius * 0.00005)
     return minlat, minlon, maxlat, maxlon
 
 
@@ -99,11 +98,14 @@ def runner(args):
         from_zoom = args.from_zoom
         to_zoom = args.to_zoom
         
+    url_count = 0
     for zoom in range(from_zoom, to_zoom+1):
-        minlat, minlon, maxlat, maxlon = crazy_extent_calc(zoom)
+        minlat, minlon, maxlat, maxlon = crazy_extent_calc(zoom, args.lat, args.lon, args.radius)
         urls = get_seed_urls(minlat, minlon, maxlat, maxlon, zoom, args.url, args.style, args.retina, args.max)
+        url_count += len(urls)
         print("zoom level: {} = {} ({})".format(zoom, len(urls), urls[0]))
 
+    print("total urls: {} for zooms {]-{} and scale of {}".format(url_count, from_zoom, to_zoom, args.radius))
 
 if __name__ == "__main__":
     args = get_cmdline_args()    
