@@ -17,8 +17,13 @@ def max_extent():
     return factor_bbox(-45.0, 45.0, -180.0, 180.0)
 
 
-def get_seed_urls(minlat, minlon, maxlat, maxlon, zoomlevel, url, style, retina, max_urls):
-    " https://tiles-st.trimet.org/styles/trimet/18/41742/93764@2x.png "
+def get_seed_urls(minlat, minlon, maxlat, maxlon, zoomlevel, url, style, data, retina, max_urls):
+    """
+    examples:
+      https://tiles-st.trimet.org/styles/trimet/8/40/91@2x.png
+      https://tiles-st.trimet.org/styles/trimet/8/40/91.png
+      https://tiles-st.trimet.org/data/or-wa/8/40/91.pbf
+    """
     ret_val = []
 
     mercator = maptile.GlobalMercator()
@@ -29,12 +34,13 @@ def get_seed_urls(minlat, minlon, maxlat, maxlon, zoomlevel, url, style, retina,
     mx, my = mercator.LatLonToMeters( maxlat, maxlon )
     tmaxx, tmaxy = mercator.MetersToTile( mx, my, zoomlevel )
     
-    ext = "@2x.png" if retina else ".png"
-
     for ty in range(tminy, tmaxy+1):
         for tx in range(tminx, tmaxx+1):
             gx, gy = mercator.GoogleTile(tx, ty, zoomlevel)
-            u = "{}/styles/{}/{}/{}/{}{}".format(url, style, zoomlevel, gx, gy, ext)
+            if data:
+                u = "{}/data/{}/{}/{}/{}{}".format(url, data, zoomlevel, gx, gy, ".pbf")
+            else:
+                u = "{}/styles/{}/{}/{}/{}{}".format(url, style, zoomlevel, gx, gy, "@2x.png" if retina else ".png")
             ret_val.append(u)
         if len(ret_val) > max_urls:
             break

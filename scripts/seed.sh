@@ -8,7 +8,12 @@ SDIR=`dirname $0`
 
 cd $SDIR
 
-#styles="trimet-satellite-routes rtp"
+# Vector Tiles:
+#  https://tiles.trimet.org/data/or-wa_/14/2609/5861.pbf
+#  https://tiles.trimet.org/data/or-wa/14/2609/5861.pbf
+# ...
+# 
+#styles="trimet-satellite-routes rtp "
 styles="trimet trimet-satellite"
 
 for s in $styles

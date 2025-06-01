@@ -18,9 +18,10 @@ def get_cmdline_args(prog_name='seed.run', do_parse=True):
     parser.add_argument('--from_zoom',   '-fz', type=int, default=15, help='lowest zoom level to seed')
     parser.add_argument('--to_zoom',     '-tz', type=int, default=15,   help='highest zoom level to seed')
     parser.add_argument('--zoom',        '-z',  type=int, default=None, help='single zoom layer')
-    parser.add_argument('--url',    '-u', type=str, default="http://tiles-st.trimet.org", help='url to seed')
-    parser.add_argument('--style',  '-s', type=str, default="trimet", help='style')
-    parser.add_argument('--wait',   '-w', type=int, default=3, help='time between layer requests')
+    parser.add_argument('--url',    '-u', type=str, default="https://tiles-st.trimet.org", help='tilecache server to seed')
+    parser.add_argument('--style',  '-s', type=str, default="trimet", help='style layer (as opposed to data layer for vector maps)')
+    parser.add_argument('--data',   '-d', type=str, default=None,     help='data vector layer (if specified, style is ignored)')
+    parser.add_argument('--wait',   '-w', type=int, default=0.03, help='TBD time between "curl" layer requests (see -curl)')
     parser.add_argument('--max',    '-m', type=int, default=300, help='limit to number of requests')
     parser.add_argument('--retina', '-2x', '-hi-rez', '-hr', action='store_true', help='create the @2x tiles')
     parser.add_argument('--both',   '-b', action='store_true', help='create both normal and @2x tiles')
@@ -63,9 +64,9 @@ def runner(args):
         minlat, minlon, maxlat, maxlon = urls.crazy_extent_calc(zoom, args.lat, args.lon, args.radius)
 
         # get seed urls
-        u = urls.get_seed_urls(minlat, minlon, maxlat, maxlon, zoom, args.url, args.style, args.retina, args.max)
-        if args.both:
-            z = urls.get_seed_urls(minlat, minlon, maxlat, maxlon, zoom, args.url, args.style, not args.retina, args.max)
+        u = urls.get_seed_urls(minlat, minlon, maxlat, maxlon, zoom, args.url, args.style, args.data, args.retina, args.max)
+        if args.both and args.data is None:
+            z = urls.get_seed_urls(minlat, minlon, maxlat, maxlon, zoom, args.url, args.style, args.data, not args.retina, args.max)
             u += z
 
         # collect urls
