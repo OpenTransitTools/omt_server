@@ -1,6 +1,8 @@
 
 import argparse
+import requests
 from . import urls
+
 
 
 def get_cmdline_args(prog_name='seed.run', do_parse=True):
@@ -24,13 +26,29 @@ def get_cmdline_args(prog_name='seed.run', do_parse=True):
     parser.add_argument('--both',   '-b', action='store_true', help='create both normal and @2x tiles')
     parser.add_argument('--stats',  '-stats', '-st', action='store_true', help='print seed url stats')
     parser.add_argument('--print',  '-print', '-p',  action='store_true', help='print seed urls')
-    parser.add_argument('--call',   '-call',  '-c',  action='store_true', help='curl the url in order to seed actual cache')
+    parser.add_argument('--curl',   '-curl',  '-c',  action='store_true', help='"curl" the url, ala seed the cache')
 
     if do_parse:
         args = parser.parse_args()
     else:
         args = parser
     return args
+
+
+def curl(urls, sleep=0):
+    def pprint(str):
+        print(str, end="", flush=True)
+    
+    for u in urls:
+        try:
+            response = requests.get(u)
+            if response.ok:
+                pprint(".")
+            else:
+                pprint("_")
+        except Exception as e:
+            #print(e)
+            pprint("#")
 
 
 def runner(args):
@@ -60,7 +78,11 @@ def runner(args):
             print(*u, sep="\n")
 
     if args.stats:
-        print("\ntotal urls: {} seed urls generated for point {},{} at zoom levels {}-{}, with radius of {}".format(len(seed_urls), args.lat, args.lon, from_zoom, to_zoom, args.radius))
+        print("\ntotal urls: {} seed urls generated for point {},{} at zoom levels {}-{}, with radius of {}\n\n".format(len(seed_urls), args.lat, args.lon, from_zoom, to_zoom, args.radius))
+
+    if args.curl:
+        curl(seed_urls)
+        print()
 
 
 if __name__ == "__main__":
