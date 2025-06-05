@@ -19,7 +19,8 @@ cd $SDIR
 #  https://tiles.trimet.org/data/or-wa_/14/2609/5861.pbf
 #  https://tiles.trimet.org/data/or-wa/14/2609/5861.pbf
 python -m seed.exe -b -p -st -hr -r 10 -f 1 -t 14 -d or-wa $*
-# TODO seed multiple stops (lat lons) / higher zoom levels
+python -m seed.exe -b -p -st -hr -r 10 -f 1 -t 14 -d or-wa_ $*
+# TODO seed multiple stops (lat lons) / higher zoom levels for or-wa (and get rid of or-wa_ some way)
 
 
 #
