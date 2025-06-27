@@ -224,7 +224,7 @@
       "filter": ["all", ["==", "$type", "LineString"], ["in", "class", "pier"]],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
-        "line-color": "hsl(47, 26%, 88%)",
+        "line-color": "rgba(17, 41, 65, 1)",
         "line-width": {"base": 1.2, "stops": [[15, 1], [17, 4]]}
       }
     },
@@ -376,7 +376,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "hsl(34, 12%, 66%)",
+        "line-color": "rgba(45, 65, 101, 1)",
         "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     },
@@ -388,7 +388,7 @@
       "filter": ["==", "class", "rail"],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "rgba(230, 230, 230, 1)",
+        "line-color": "rgba(6, 27, 43, 1)",
         "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     },
@@ -546,12 +546,7 @@
           "property": "render_min_height",
           "type": "identity"
         },
-        "fill-extrusion-color": [
-          "case",
-          ["has", "colour"],
-          ["get", "colour"],
-          "rgba(15, 35, 55, 1)"
-        ],
+        "fill-extrusion-color": "rgba(15, 35, 55, 1)",
         "fill-extrusion-height": {
           "property": "render_height",
           "type": "identity"

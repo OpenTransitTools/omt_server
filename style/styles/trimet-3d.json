@@ -541,17 +541,13 @@
       "source": "openmaptiles",
       "source-layer": "building",
       "filter": ["all", ["!has", "hide_3d"]],
+      "layout": {"visibility": "visible"},
       "paint": {
         "fill-extrusion-base": {
           "property": "render_min_height",
           "type": "identity"
         },
-        "fill-extrusion-color": [
-          "case",
-          ["has", "colour"],
-          ["get", "colour"],
-          "rgba(238, 238, 238, 1)"
-        ],
+        "fill-extrusion-color": "rgba(238, 238, 238, 1)",
         "fill-extrusion-height": {
           "property": "render_height",
           "type": "identity"
