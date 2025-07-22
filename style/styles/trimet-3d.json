@@ -187,25 +187,6 @@
       }
     },
     {
-      "id": "tunnel_railway_transit",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "transportation",
-      "minzoom": 0,
-      "filter": [
-        "all",
-        ["==", "$type", "LineString"],
-        ["==", "brunnel", "tunnel"],
-        ["==", "class", "transit"]
-      ],
-      "layout": {"line-cap": "butt", "line-join": "miter"},
-      "paint": {
-        "line-color": "hsl(34, 12%, 66%)",
-        "line-dasharray": [3, 3],
-        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
-      }
-    },
-    {
       "id": "road_area_pier",
       "type": "fill",
       "metadata": {},
@@ -275,6 +256,53 @@
       "paint": {
         "line-color": "rgba(218, 215, 214, 1)",
         "line-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]}
+      }
+    },
+    {
+      "id": "railway",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": ["==", "class", "rail"],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "line-color": "rgba(230, 230, 230, 1)",
+        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
+      }
+    },
+    {
+      "id": "railway_transit",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": [
+        "all",
+        ["==", "class", "transit"],
+        ["!=", "brunnel", "tunnel"]
+      ],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "line-color": "hsl(34, 12%, 66%)",
+        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
+      }
+    },
+    {
+      "id": "tunnel_railway_transit",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "minzoom": 0,
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["==", "brunnel", "tunnel"],
+        ["==", "class", "transit"]
+      ],
+      "layout": {"line-cap": "butt", "line-join": "miter"},
+      "paint": {
+        "line-color": "hsl(34, 12%, 66%)",
+        "line-dasharray": [3, 3],
+        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     },
     {
@@ -362,34 +390,6 @@
         "line-color": "rgba(218, 215, 214, 1)",
         "line-offset": 0,
         "line-width": {"base": 1.4, "stops": [[8, 1], [16, 10]]}
-      }
-    },
-    {
-      "id": "railway_transit",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "transportation",
-      "filter": [
-        "all",
-        ["==", "class", "transit"],
-        ["!=", "brunnel", "tunnel"]
-      ],
-      "layout": {"visibility": "visible"},
-      "paint": {
-        "line-color": "hsl(34, 12%, 66%)",
-        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
-      }
-    },
-    {
-      "id": "railway",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "transportation",
-      "filter": ["==", "class", "rail"],
-      "layout": {"visibility": "visible"},
-      "paint": {
-        "line-color": "rgba(230, 230, 230, 1)",
-        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     },
     {
@@ -560,18 +560,18 @@
       "type": "symbol",
       "source": "openmaptiles",
       "source-layer": "place",
-      "minzoom": 8,
+      "minzoom": 12,
       "filter": [
         "all",
         ["==", "$type", "Point"],
-        ["all", ["!=", "class", "city"]]
+        ["!in", "class", "city", "state", "country", "continent"]
       ],
       "layout": {
         "text-anchor": "center",
-        "text-field": "{name_en}",
+        "text-field": "{name:latin}\n{name:nonlatin}",
         "text-font": ["Source Sans Pro Regular"],
         "text-max-width": 6,
-        "text-size": {"stops": [[6, 10], [12, 14]]},
+        "text-size": {"stops": [[12, 8], [16, 16]]},
         "visibility": "visible",
         "text-transform": "uppercase",
         "text-letter-spacing": 0.1

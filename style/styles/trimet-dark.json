@@ -5,8 +5,7 @@
     "mapbox:autocomposite": false,
     "mapbox:type": "template",
     "maputnik:renderer": "mbgljs",
-    "openmaptiles:version": "3.x",
-    "openmaptiles:mapbox:owner": "openmaptiles"
+    "openmaptiles:version": "3.x"
   },
   "sources": {
     "openmaptiles": {
@@ -290,6 +289,22 @@
         "line-color": "rgba(218, 215, 214, 1)",
         "line-dasharray": [0.28, 0.14],
         "line-width": {"base": 1.4, "stops": [[6, 0.5], [20, 30]]}
+      }
+    },
+    {
+      "id": "railway_transit",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": [
+        "all",
+        ["==", "class", "transit"],
+        ["!=", "brunnel", "tunnel"]
+      ],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "line-color": "rgba(45, 65, 101, 1)",
+        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     },
     {
@@ -584,33 +599,6 @@
       }
     },
     {
-      "id": "poi_label",
-      "type": "symbol",
-      "source": "openmaptiles",
-      "source-layer": "poi",
-      "minzoom": 14,
-      "maxzoom": 24,
-      "filter": ["all", ["==", "$type", "Point"], ["==", "rank", 1]],
-      "layout": {
-        "icon-size": 1,
-        "text-anchor": "top",
-        "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Source Sans Pro Regular"],
-        "text-max-width": 8,
-        "text-offset": [0, 0.5],
-        "text-size": 14,
-        "visibility": "visible",
-        "text-transform": "uppercase",
-        "text-letter-spacing": 0.1
-      },
-      "paint": {
-        "text-color": "rgba(255, 255, 255, 1)",
-        "text-halo-blur": 1,
-        "text-halo-color": "rgba(0, 0, 0, 1)",
-        "text-halo-width": 1
-      }
-    },
-    {
       "id": "airport-label",
       "type": "symbol",
       "source": "openmaptiles",
@@ -666,7 +654,7 @@
       "type": "symbol",
       "source": "openmaptiles",
       "source-layer": "place",
-      "minzoom": 10,
+      "minzoom": 12,
       "filter": [
         "all",
         ["==", "$type", "Point"],
@@ -677,7 +665,7 @@
         "text-field": "{name:latin}\n{name:nonlatin}",
         "text-font": ["Source Sans Pro Regular"],
         "text-max-width": 6,
-        "text-size": {"stops": [[8, 10], [12, 14]]},
+        "text-size": {"stops": [[12, 8], [16, 16]]},
         "visibility": "visible",
         "text-transform": "uppercase",
         "text-letter-spacing": 0.1

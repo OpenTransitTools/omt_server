@@ -3,6 +3,7 @@
   "name": "TriMet",
   "metadata": {
     "mapbox:autocomposite": false,
+    "mapbox:type": "template",
     "maputnik:renderer": "mbgljs",
     "openmaptiles:version": "3.x"
   },
@@ -288,6 +289,22 @@
       }
     },
     {
+      "id": "railway_transit",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": [
+        "all",
+        ["==", "class", "transit"],
+        ["!=", "brunnel", "tunnel"]
+      ],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "line-color": "hsl(34, 12%, 66%)",
+        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
+      }
+    },
+    {
       "id": "railway",
       "type": "line",
       "source": "openmaptiles",
@@ -516,41 +533,6 @@
       }
     },
     {
-      "id": "poi_label",
-      "type": "symbol",
-      "source": "openmaptiles",
-      "source-layer": "poi",
-      "minzoom": 10,
-      "maxzoom": 24,
-      "filter": ["all", ["==", "$type", "Point"], ["==", "rank", 1]],
-      "layout": {
-        "icon-size": 1,
-        "text-anchor": "top",
-        "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": {
-          "property": "",
-          "type": "categorical",
-          "stops": [
-            [{"zoom": 6, "value": ""}, ["Source Sans Pro"]],
-            [{"zoom": 10, "value": ""}, ["Source Sans Pro"]]
-          ],
-          "default": ["Source Sans Pro Regular", "Arial Unicode MS Regular"]
-        },
-        "text-max-width": 8,
-        "text-offset": [0, 0.5],
-        "text-size": 11,
-        "visibility": "visible",
-        "text-transform": "uppercase",
-        "text-letter-spacing": 0.1
-      },
-      "paint": {
-        "text-color": "rgba(92, 93, 93, 1)",
-        "text-halo-blur": 1,
-        "text-halo-color": "hsl(0, 0%, 100%)",
-        "text-halo-width": 1
-      }
-    },
-    {
       "id": "admin_sub",
       "type": "line",
       "source": "openmaptiles",
@@ -665,7 +647,7 @@
       "type": "symbol",
       "source": "openmaptiles",
       "source-layer": "place",
-      "minzoom": 8,
+      "minzoom": 12,
       "filter": [
         "all",
         ["==", "$type", "Point"],
@@ -676,7 +658,7 @@
         "text-field": "{name:latin}\n{name:nonlatin}",
         "text-font": ["Source Sans Pro Regular"],
         "text-max-width": 6,
-        "text-size": {"stops": [[6, 10], [12, 14]]},
+        "text-size": {"stops": [[12, 8], [16, 16]]},
         "visibility": "visible",
         "text-transform": "uppercase",
         "text-letter-spacing": 0.1
