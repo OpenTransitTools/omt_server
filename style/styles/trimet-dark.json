@@ -107,7 +107,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "#1F3038",
+        "line-color": "rgba(17, 49, 78, 0.29)",
         "line-dasharray": [3, 3],
         "line-gap-width": {"stops": [[12, 0], [20, 6]]},
         "line-opacity": 1,
@@ -127,7 +127,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "rgba(17, 49, 78, 1)",
+        "line-color": "rgba(17, 49, 78, 0.29)",
         "line-opacity": 1,
         "line-width": {"base": 1.4, "stops": [[8, 1], [20, 8]]}
       }
@@ -754,6 +754,25 @@
         "text-halo-blur": 0,
         "text-halo-color": "rgba(255,255,255,0.75)",
         "text-halo-width": 2
+      }
+    },
+    {
+      "id": "tunnel_railway_transit",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "minzoom": 0,
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["==", "brunnel", "tunnel"],
+        ["==", "class", "transit"]
+      ],
+      "layout": {"line-cap": "butt", "line-join": "miter"},
+      "paint": {
+        "line-color": "rgba(45, 65, 101, 1)",
+        "line-dasharray": [3, 3],
+        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     }
   ],

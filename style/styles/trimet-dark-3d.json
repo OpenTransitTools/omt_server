@@ -132,7 +132,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "rgba(213, 238, 248, 1)",
+        "line-color": "rgba(17, 49, 78, 0.29)",
         "line-dasharray": [3, 3],
         "line-gap-width": {"stops": [[12, 0], [20, 6]]},
         "line-opacity": 1,
@@ -152,12 +152,12 @@
       "filter": [
         "all",
         ["==", "$type", "LineString"],
-        ["!=", "intermittent", 1],
-        ["!in", "brunnel", "tunnel", "bridge"]
+        ["!in", "brunnel", "tunnel", "bridge"],
+        ["!=", "intermittent", 1]
       ],
-      "layout": {"visibility": "none"},
+      "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "hsl(205, 56%, 73%)",
+        "line-color": "rgba(17, 49, 78, 0.29)",
         "line-opacity": 1,
         "line-width": {"base": 1.4, "stops": [[8, 1], [20, 8]]}
       }
@@ -200,7 +200,7 @@
       ],
       "layout": {"line-cap": "butt", "line-join": "miter"},
       "paint": {
-        "line-color": "hsl(34, 12%, 66%)",
+        "line-color": "rgba(45, 65, 101, 1)",
         "line-dasharray": [3, 3],
         "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }

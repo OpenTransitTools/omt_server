@@ -93,7 +93,7 @@
       }
     },
     {
-      "id": "waterway-tunnel",
+      "id": "waterway_tunnel",
       "type": "line",
       "source": "openmaptiles",
       "source-layer": "waterway",
@@ -106,16 +106,14 @@
       "paint": {
         "line-color": "rgba(213, 238, 248, 1)",
         "line-dasharray": [3, 3],
-        "line-gap-width": {
+        "line-gap-width": {"stops": [[12, 0], [20, 6]], "type": "exponential"},
+        "line-opacity": 1,
+        "line-width": {
           "property": "",
           "type": "exponential",
-          "stops": [
-            [{"zoom": 12, "value": 0}, 0],
-            [{"zoom": 20, "value": 0}, 6]
-          ]
-        },
-        "line-opacity": 1,
-        "line-width": {"base": 1.4, "stops": [[8, 1], [20, 2]]}
+          "base": 1.4,
+          "stops": [[{"zoom": 8, "value": 0}, 1], [{"zoom": 20, "value": 0}, 2]]
+        }
       }
     },
     {
@@ -742,6 +740,25 @@
         "text-halo-blur": 0,
         "text-halo-color": "rgba(255,255,255,0.75)",
         "text-halo-width": 2
+      }
+    },
+    {
+      "id": "tunnel_railway_transit",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "minzoom": 0,
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["==", "brunnel", "tunnel"],
+        ["==", "class", "transit"]
+      ],
+      "layout": {"line-cap": "butt", "line-join": "miter"},
+      "paint": {
+        "line-color": "hsl(34, 12%, 66%)",
+        "line-dasharray": [3, 3],
+        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     }
   ],
