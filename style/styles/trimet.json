@@ -175,7 +175,7 @@
       "source-layer": "transportation",
       "filter": ["all", ["==", "$type", "Polygon"], ["==", "class", "pier"]],
       "layout": {"visibility": "visible"},
-      "paint": {"fill-antialias": true, "fill-color": "rgba(218, 215, 214, 1)"}
+      "paint": {"fill-antialias": true, "fill-color": "rgba(238, 238, 238, 1)"}
     },
     {
       "id": "road_pier",
@@ -205,7 +205,7 @@
         ["in", "brunnel", "bridge"]
       ],
       "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "rgba(218, 215, 214, 1)", "fill-opacity": 0.5}
+      "paint": {"fill-color": "rgba(255, 255, 255, 1)", "fill-opacity": 1}
     },
     {
       "id": "road_path",
@@ -247,7 +247,29 @@
       },
       "paint": {
         "line-color": "rgba(218, 215, 214, 1)",
-        "line-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]}
+        "line-width": {
+          "base": 1.55,
+          "stops": [[1, 0.5], [15, 1], [18, 30], [19, 90], [20, 200]]
+        }
+      }
+    },
+    {
+      "id": "tunnel_railway_transit",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "minzoom": 0,
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["==", "brunnel", "tunnel"],
+        ["==", "class", "transit"]
+      ],
+      "layout": {"line-cap": "butt", "line-join": "miter"},
+      "paint": {
+        "line-color": "hsl(34, 12%, 66%)",
+        "line-dasharray": [3, 3],
+        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     },
     {
@@ -315,24 +337,6 @@
       }
     },
     {
-      "id": "aeroway-area",
-      "type": "fill",
-      "metadata": {"mapbox:group": "1444849345966.4436"},
-      "source": "openmaptiles",
-      "source-layer": "aeroway",
-      "minzoom": 4,
-      "filter": [
-        "all",
-        ["==", "$type", "Polygon"],
-        ["in", "class", "runway", "taxiway"]
-      ],
-      "layout": {"visibility": "visible"},
-      "paint": {
-        "fill-color": "rgba(218, 215, 214, 1)",
-        "fill-opacity": {"base": 1, "stops": [[13, 0], [14, 1]]}
-      }
-    },
-    {
       "id": "aeroway-taxiway",
       "type": "line",
       "metadata": {"mapbox:group": "1444849345966.4436"},
@@ -356,12 +360,30 @@
       }
     },
     {
+      "id": "aeroway-area",
+      "type": "fill",
+      "metadata": {"mapbox:group": "1444849345966.4436"},
+      "source": "openmaptiles",
+      "source-layer": "aeroway",
+      "minzoom": 4,
+      "filter": [
+        "all",
+        ["==", "$type", "Polygon"],
+        ["in", "class", "runway", "taxiway"]
+      ],
+      "layout": {"visibility": "none"},
+      "paint": {
+        "fill-color": "rgba(218, 215, 214, 1)",
+        "fill-opacity": {"base": 1, "stops": [[13, 0], [14, 1]]}
+      }
+    },
+    {
       "id": "aeroway-runway",
       "type": "line",
       "metadata": {"mapbox:group": "1444849345966.4436"},
       "source": "openmaptiles",
       "source-layer": "aeroway",
-      "minzoom": 4,
+      "minzoom": 11,
       "filter": [
         "all",
         ["in", "class", "runway"],
@@ -375,7 +397,7 @@
       "paint": {
         "line-color": "rgba(218, 215, 214, 1)",
         "line-opacity": 1,
-        "line-width": {"base": 1.5, "stops": [[11, 4], [17, 50]]}
+        "line-width": {"base": 1.5, "stops": [[11, 1], [17, 10]]}
       }
     },
     {
@@ -383,6 +405,7 @@
       "type": "line",
       "source": "openmaptiles",
       "source-layer": "transportation",
+      "minzoom": 0,
       "filter": [
         "all",
         ["==", "$type", "LineString"],
@@ -391,7 +414,10 @@
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
         "line-color": "rgba(218, 215, 214, 1)",
-        "line-width": {"base": 1.4, "stops": [[6, 1], [20, 30]]}
+        "line-width": {
+          "base": 1,
+          "stops": [[1, 0.5], [15, 1], [18, 30], [19, 120], [20, 200]]
+        }
       }
     },
     {
@@ -399,6 +425,7 @@
       "type": "line",
       "source": "openmaptiles",
       "source-layer": "transportation",
+      "minzoom": 11,
       "filter": [
         "all",
         ["==", "$type", "LineString"],
@@ -407,7 +434,10 @@
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
         "line-color": "rgba(218, 215, 214, 1)",
-        "line-width": {"base": 1.4, "stops": [[6, 0.5], [20, 20]]}
+        "line-width": {
+          "base": 1,
+          "stops": [[1, 1], [15, 1], [18, 30], [19, 120], [20, 200]]
+        }
       }
     },
     {
@@ -424,7 +454,10 @@
       "paint": {
         "line-color": "rgba(218, 215, 214, 1)",
         "line-offset": 0,
-        "line-width": {"base": 1.4, "stops": [[8, 1], [16, 10]]}
+        "line-width": {
+          "base": 1,
+          "stops": [[1, 1], [15, 2], [18, 30], [19, 200]]
+        }
       }
     },
     {
@@ -471,7 +504,11 @@
         ["==", "brunnel", "bridge"],
         ["==", "class", "minor_road"]
       ],
-      "layout": {"line-cap": "butt", "line-join": "miter"},
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "miter",
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "rgba(218, 215, 214, 1)",
         "line-gap-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]},
@@ -489,7 +526,11 @@
         ["==", "brunnel", "bridge"],
         ["in", "class", "primary", "secondary", "tertiary", "trunk"]
       ],
-      "layout": {"line-cap": "butt", "line-join": "miter"},
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "miter",
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "rgba(218, 215, 214, 1)",
         "line-gap-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]},
@@ -507,7 +548,11 @@
         ["==", "brunnel", "bridge"],
         ["==", "class", "minor_road"]
       ],
-      "layout": {"line-cap": "round", "line-join": "round"},
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "rgba(218, 215, 214, 1)",
         "line-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]}
@@ -524,7 +569,11 @@
         ["==", "brunnel", "bridge"],
         ["in", "class", "primary", "secondary", "tertiary", "trunk"]
       ],
-      "layout": {"line-cap": "round", "line-join": "round"},
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "rgba(218, 215, 214, 1)",
         "line-width": {"base": 1.4, "stops": [[6, 0.5], [20, 30]]}
@@ -602,7 +651,7 @@
         "text-font": ["Source Sans Pro Regular"],
         "text-max-width": 8,
         "text-offset": [0, 0.5],
-        "text-size": {"stops": [[8, 10], [12, 14]]},
+        "text-size": {"stops": [[1, 1], [10, 5], [13, 12], [15, 15]]},
         "visibility": "visible",
         "text-transform": "uppercase",
         "text-letter-spacing": 0.1
@@ -629,7 +678,7 @@
         "text-font": ["Source Sans Pro Regular"],
         "text-letter-spacing": 0.05,
         "text-rotation-alignment": "map",
-        "text-size": {"base": 1.4, "stops": [[13, 10], [16, 14], [20, 20]]},
+        "text-size": {"base": 1.4, "stops": [[13, 10], [16, 14], [20, 24]]},
         "text-transform": "none",
         "visibility": "visible",
         "symbol-spacing": 500
@@ -645,7 +694,7 @@
       "type": "symbol",
       "source": "openmaptiles",
       "source-layer": "place",
-      "minzoom": 12,
+      "minzoom": 10,
       "filter": [
         "all",
         ["==", "$type", "Point"],
@@ -656,7 +705,7 @@
         "text-field": "{name:latin}\n{name:nonlatin}",
         "text-font": ["Source Sans Pro Regular"],
         "text-max-width": 6,
-        "text-size": {"stops": [[12, 8], [16, 16]]},
+        "text-size": {"stops": [[1, 1], [10, 5], [12, 12], [15, 15]]},
         "visibility": "visible",
         "text-transform": "uppercase",
         "text-letter-spacing": 0.1
@@ -740,25 +789,6 @@
         "text-halo-blur": 0,
         "text-halo-color": "rgba(255,255,255,0.75)",
         "text-halo-width": 2
-      }
-    },
-    {
-      "id": "tunnel_railway_transit",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "transportation",
-      "minzoom": 0,
-      "filter": [
-        "all",
-        ["==", "$type", "LineString"],
-        ["==", "brunnel", "tunnel"],
-        ["==", "class", "transit"]
-      ],
-      "layout": {"line-cap": "butt", "line-join": "miter"},
-      "paint": {
-        "line-color": "hsl(34, 12%, 66%)",
-        "line-dasharray": [3, 3],
-        "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     }
   ],

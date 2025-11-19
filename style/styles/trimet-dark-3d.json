@@ -17,7 +17,7 @@
     {
       "id": "background",
       "type": "background",
-      "paint": {"background-color": "rgba(2, 15, 27, 1)"}
+      "paint": {"background-color": "rgba(3, 23, 41, 1)"}
     },
     {
       "id": "landuse-residential",
@@ -30,7 +30,7 @@
         ["==", "class", "residential"]
       ],
       "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "rgba(1, 11, 20, 1)", "fill-opacity": 1}
+      "paint": {"fill-color": "rgba(3, 23, 41, 1)", "fill-opacity": 1}
     },
     {
       "id": "landcover_grass",
@@ -38,14 +38,14 @@
       "source": "openmaptiles",
       "source-layer": "landcover",
       "filter": ["==", "class", "grass"],
-      "paint": {"fill-color": "rgba(1, 8, 14, 1)", "fill-opacity": 1}
+      "paint": {"fill-color": "rgba(11, 32, 37, 1)", "fill-opacity": 1}
     },
     {
       "id": "park",
       "type": "fill",
       "source": "openmaptiles",
       "source-layer": "park",
-      "paint": {"fill-color": "rgba(1, 8, 14, 1)", "fill-opacity": 1}
+      "paint": {"fill-color": "rgba(11, 32, 37, 1)", "fill-opacity": 1}
     },
     {
       "id": "landcover_wood",
@@ -53,7 +53,7 @@
       "source": "openmaptiles",
       "source-layer": "landcover",
       "filter": ["==", "class", "wood"],
-      "paint": {"fill-color": "rgba(1, 8, 14, 1)", "fill-opacity": 1}
+      "paint": {"fill-color": "rgba(11, 32, 37, 1)", "fill-opacity": 1}
     },
     {
       "id": "water",
@@ -65,7 +65,7 @@
         ["==", "$type", "Polygon"],
         ["!=", "brunnel", "tunnel"]
       ],
-      "paint": {"fill-color": "rgba(17, 49, 78, 1)"}
+      "paint": {"fill-color": "rgba(1, 4, 8, 1)"}
     },
     {
       "id": "landcover-ice-shelf",
@@ -173,7 +173,7 @@
         ["==", "intermittent", 1],
         ["!in", "brunnel", "tunnel", "bridge"]
       ],
-      "layout": {"visibility": "visible"},
+      "layout": {"visibility": "none"},
       "paint": {
         "line-color": "rgba(213, 238, 248, 1)",
         "line-dasharray": [2, 1],
@@ -200,7 +200,7 @@
       ],
       "layout": {"line-cap": "butt", "line-join": "miter"},
       "paint": {
-        "line-color": "rgba(45, 65, 101, 1)",
+        "line-color": "rgba(37, 87, 137, 1)",
         "line-dasharray": [3, 3],
         "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
@@ -238,8 +238,8 @@
         ["==", "$type", "Polygon"],
         ["in", "brunnel", "bridge"]
       ],
-      "layout": {},
-      "paint": {"fill-color": "rgba(2, 15, 27, 1)", "fill-opacity": 0.5}
+      "layout": {"visibility": "visible"},
+      "paint": {"fill-color": "rgba(3, 23, 41, 1)", "fill-opacity": 1}
     },
     {
       "id": "road_path",
@@ -255,7 +255,7 @@
       ],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
-        "line-color": "rgba(12, 30, 47, 1)",
+        "line-color": "rgba(18, 45, 65, 1)",
         "line-width": {"stops": [[15, 1], [18, 2]]},
         "line-dasharray": [0.125, 2]
       }
@@ -273,8 +273,11 @@
       ],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
-        "line-color": "rgba(17, 41, 65, 1)",
-        "line-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]}
+        "line-color": "rgba(26, 62, 98, 1)",
+        "line-width": {
+          "base": 1.55,
+          "stops": [[1, 0.5], [15, 1], [18, 30], [19, 90], [20, 200]]
+        }
       }
     },
     {
@@ -287,7 +290,11 @@
         ["==", "$type", "LineString"],
         ["all", ["==", "brunnel", "tunnel"], ["==", "class", "minor_road"]]
       ],
-      "layout": {"line-cap": "butt", "line-join": "miter"},
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "miter",
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "#efefef",
         "line-dasharray": [0.36, 0.18],
@@ -308,9 +315,13 @@
           ["in", "class", "primary", "secondary", "tertiary", "trunk"]
         ]
       ],
-      "layout": {"line-cap": "butt", "line-join": "miter"},
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "miter",
+        "visibility": "none"
+      },
       "paint": {
-        "line-color": "#fff",
+        "line-color": "rgba(17, 41, 65, 1)",
         "line-dasharray": [0.28, 0.14],
         "line-width": {"base": 1.4, "stops": [[6, 0.5], [20, 30]]}
       }
@@ -320,6 +331,7 @@
       "type": "line",
       "source": "openmaptiles",
       "source-layer": "transportation",
+      "minzoom": 0,
       "filter": [
         "all",
         ["==", "$type", "LineString"],
@@ -327,8 +339,11 @@
       ],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
-        "line-color": "rgba(17, 41, 65, 1)",
-        "line-width": {"base": 1.4, "stops": [[6, 0.5], [20, 30]]}
+        "line-color": "rgba(26, 62, 98, 1)",
+        "line-width": {
+          "base": 1,
+          "stops": [[1, 0.5], [15, 1], [18, 30], [19, 120], [20, 200]]
+        }
       }
     },
     {
@@ -336,6 +351,7 @@
       "type": "line",
       "source": "openmaptiles",
       "source-layer": "transportation",
+      "minzoom": 11,
       "filter": [
         "all",
         ["==", "$type", "LineString"],
@@ -343,8 +359,11 @@
       ],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
-        "line-color": "rgba(17, 41, 65, 1)",
-        "line-width": {"base": 1.4, "stops": [[6, 0.5], [20, 20]]}
+        "line-color": "rgba(26, 62, 98, 1)",
+        "line-width": {
+          "base": 1,
+          "stops": [[1, 1], [15, 1], [18, 30], [19, 120], [20, 200]]
+        }
       }
     },
     {
@@ -359,9 +378,76 @@
       ],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
-        "line-color": "rgba(17, 41, 65, 1)",
+        "line-color": "rgba(26, 62, 98, 1)",
         "line-offset": 0,
-        "line-width": {"base": 1.4, "stops": [[8, 1], [16, 10]]}
+        "line-width": {
+          "base": 1,
+          "stops": [[1, 1], [15, 2], [18, 30], [19, 200]]
+        }
+      }
+    },
+    {
+      "id": "aeroway-runway",
+      "type": "line",
+      "metadata": {"mapbox:group": "1444849345966.4436"},
+      "source": "openmaptiles",
+      "source-layer": "aeroway",
+      "minzoom": 11,
+      "filter": [
+        "all",
+        ["in", "class", "runway"],
+        ["==", "$type", "LineString"]
+      ],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(21, 51, 81, 1)",
+        "line-opacity": 1,
+        "line-width": {"base": 1, "stops": [[11, 1], [14, 10]]}
+      }
+    },
+    {
+      "id": "aeroway-area",
+      "type": "fill",
+      "metadata": {"mapbox:group": "1444849345966.4436"},
+      "source": "openmaptiles",
+      "source-layer": "aeroway",
+      "minzoom": 4,
+      "filter": [
+        "all",
+        ["==", "$type", "Polygon"],
+        ["in", "class", "runway", "taxiway"]
+      ],
+      "layout": {"visibility": "none"},
+      "paint": {
+        "fill-color": "rgba(218, 215, 214, 1)",
+        "fill-opacity": {"base": 1, "stops": [[13, 0], [14, 1]]}
+      }
+    },
+    {
+      "id": "aeroway-taxiway",
+      "type": "line",
+      "metadata": {"mapbox:group": "1444849345966.4436"},
+      "source": "openmaptiles",
+      "source-layer": "aeroway",
+      "minzoom": 13,
+      "filter": [
+        "all",
+        ["in", "class", "taxiway"],
+        ["==", "$type", "LineString"]
+      ],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(21, 51, 81, 1)",
+        "line-opacity": 1,
+        "line-width": {"base": 1.5, "stops": [[12, 1], [17, 10]]}
       }
     },
     {
@@ -376,7 +462,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "rgba(45, 65, 101, 1)",
+        "line-color": "rgba(37, 87, 137, 1)",
         "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     },
@@ -388,7 +474,7 @@
       "filter": ["==", "class", "rail"],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "rgba(6, 27, 43, 1)",
+        "line-color": "rgba(1, 2, 3, 1)",
         "line-opacity": {"base": 1, "stops": [[11, 0], [16, 1]]}
       }
     },
@@ -402,7 +488,11 @@
         ["==", "$type", "LineString"],
         ["all", ["==", "brunnel", "bridge"], ["==", "class", "minor_road"]]
       ],
-      "layout": {"line-cap": "butt", "line-join": "miter"},
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "miter",
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "#dedede",
         "line-gap-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]},
@@ -423,9 +513,13 @@
           ["in", "class", "primary", "secondary", "tertiary", "trunk"]
         ]
       ],
-      "layout": {"line-cap": "butt", "line-join": "miter"},
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "miter",
+        "visibility": "none"
+      },
       "paint": {
-        "line-color": "rgba(17, 41, 65, 1)",
+        "line-color": "rgba(21, 51, 81, 1)",
         "line-gap-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]},
         "line-width": {"base": 1.6, "stops": [[12, 0.5], [20, 10]]}
       }
@@ -440,7 +534,11 @@
         ["==", "$type", "LineString"],
         ["all", ["==", "brunnel", "bridge"], ["==", "class", "minor_road"]]
       ],
-      "layout": {"line-cap": "round", "line-join": "round"},
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "#efefef",
         "line-width": {"base": 1.55, "stops": [[4, 0.25], [20, 30]]}
@@ -460,9 +558,13 @@
           ["in", "class", "primary", "secondary", "tertiary", "trunk"]
         ]
       ],
-      "layout": {"line-cap": "round", "line-join": "round"},
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "none"
+      },
       "paint": {
-        "line-color": "rgba(17, 41, 65, 1)",
+        "line-color": "rgba(21, 51, 81, 1)",
         "line-width": {"base": 1.4, "stops": [[6, 0.5], [20, 30]]}
       }
     },
@@ -515,6 +617,33 @@
       }
     },
     {
+      "id": "airport-label",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "aerodrome_label",
+      "minzoom": 10,
+      "filter": ["all", ["has", "iata"]],
+      "layout": {
+        "icon-size": 1,
+        "text-anchor": "top",
+        "text-field": "{name:latin}\n{name:nonlatin}",
+        "text-font": ["Source Sans Pro Regular"],
+        "text-max-width": 8,
+        "text-offset": [0, 0.5],
+        "text-size": {"stops": [[1, 1], [10, 5], [13, 12], [15, 15]]},
+        "visibility": "visible",
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0.1,
+        "symbol-z-order": "viewport-y"
+      },
+      "paint": {
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-blur": 1,
+        "text-halo-width": 1,
+        "text-halo-color": "rgba(0, 0, 0, 1)"
+      }
+    },
+    {
       "id": "road_major_label",
       "type": "symbol",
       "source": "openmaptiles",
@@ -525,7 +654,7 @@
         "text-field": "{name}",
         "text-font": ["Source Sans Pro Regular"],
         "text-rotation-alignment": "map",
-        "text-size": {"base": 1.4, "stops": [[13, 10], [16, 14], [20, 20]]},
+        "text-size": {"base": 1.4, "stops": [[13, 10], [16, 14], [20, 24]]},
         "text-transform": "none",
         "text-letter-spacing": 0.05
       },
@@ -546,7 +675,7 @@
           "property": "render_min_height",
           "type": "identity"
         },
-        "fill-extrusion-color": "rgba(15, 35, 55, 1)",
+        "fill-extrusion-color": "rgba(3, 23, 39, 1)",
         "fill-extrusion-height": {
           "property": "render_height",
           "type": "identity"
@@ -559,7 +688,7 @@
       "type": "symbol",
       "source": "openmaptiles",
       "source-layer": "place",
-      "minzoom": 12,
+      "minzoom": 10,
       "filter": [
         "all",
         ["==", "$type", "Point"],
@@ -570,7 +699,7 @@
         "text-field": "{name_en}",
         "text-font": ["Source Sans Pro Regular"],
         "text-max-width": 6,
-        "text-size": {"stops": [[12, 8], [16, 16]]},
+        "text-size": {"stops": [[1, 1], [10, 5], [13, 12], [15, 15]]},
         "visibility": "visible",
         "text-transform": "uppercase",
         "text-letter-spacing": 0.1

@@ -63,7 +63,11 @@ c:/
 # Packages
 imposm_*
 x
+y
+z
 x.*
+y.*
+z.*
 *.egg
 *.egg-info
 dist
