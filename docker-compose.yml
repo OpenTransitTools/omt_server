@@ -16,6 +16,10 @@ services:
       - postgres
     ports:
       - "${PGPORT:-5432}:${PGPORT:-5432}"
+    logging:
+      options:
+        max-size: "120m"
+        max-file: "8"
     env_file: .env
     environment:
       # postgress container uses old variable names
@@ -116,6 +120,10 @@ services:
       - postgres
     ports:
       - "${PPORT:-8090}:${PPORT:-8090}"
+    logging:
+      options:
+        max-size: "120m"
+        max-file: "8"
     volumes:
       - .:/tileset
 
@@ -135,6 +143,10 @@ services:
     restart: always
     ports:
       - "${TPORT:-8080}:${TPORT:-8080}"
+    logging:
+      options:
+        max-size: "120m"
+        max-file: "8"
     volumes:
       - ./data:/data
       - ./style:/style
